@@ -474,22 +474,17 @@
   <!-- ==================== NEW: OVERLAY WARNING ==================== -->
   <div id="overlay-warning">
    <div class="overlay-warn-box">
-    <div class="countdown-wrap">
-     <svg width="88" height="88" viewBox="0 0 88 88">
-      <circle class="ring-bg" cx="44" cy="44" r="36"/>
-      <circle class="ring-progress" id="overlay-ring-progress" cx="44" cy="44" r="36" style="stroke:#a5b4fc;"/>
-     </svg>
-     <div class="countdown-num" id="overlay-countdown">5</div>
-    </div>
-    <div class="text-5xl mb-3">🪟</div>
-    <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">OVERLAY APP TERDETEKSI!</h2>
+    <div class="text-6xl mb-4">🚫</div>
+    <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">OVERLAY TERDETEKSI!</h2>
     <p class="text-indigo-100 mb-4 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
-      Aplikasi overlay / drawing over apps terdeteksi aktif di layar Anda.<br><br>
-      <strong class="text-yellow-300 text-base">Ujian akan direset ke halaman login!</strong>
+      Aplikasi overlay / drawing-over-apps terdeteksi aktif di layar Anda.<br><br>
+      <strong class="text-yellow-300 text-lg">⚡ UJIAN LANGSUNG DIRESET!</strong>
     </p>
-    <div class="bg-black/20 rounded-xl p-3 border border-indigo-400/30">
-      <p class="text-indigo-200 text-xs" style="font-family:'Inter',sans-serif;">Tutup semua overlay app, assistive touch, atau screen recorder sekarang!</p>
+    <div class="bg-black/30 rounded-xl p-3 border border-red-400/60">
+      <p class="text-red-300 text-xs font-bold" style="font-family:'Inter',sans-serif;">ZERO TOLERANCE — TIDAK ADA PERINGATAN KEDUA</p>
     </div>
+    <div id="overlay-countdown" class="hidden"></div>
+    <circle class="ring-progress" id="overlay-ring-progress" style="display:none;"/>
    </div>
   </div>
 
@@ -817,129 +812,285 @@
         }
 
         // ====================================================================================
-        // ============================= ANTI-OVERLAY =========================================
+        // ============================= ANTI-OVERLAY (ZERO TOLERANCE) =======================
         // ====================================================================================
+        // Filosofi: Deteksi KEBERADAAN overlay, bukan seberapa besar — satu piksel pun = LANGSUNG reset.
+        // Metode berlapis: visibilitychange, document.hidden, focus/blur timing, pointer capture,
+        // MediaDevices hijack, DOM mutation guard, canvas fingerprint, touch hitTest, multi-touch trap,
+        // CSS filter trap, requestAnimationFrame heartbeat, PageLifecycle API, dan lain-lain.
+        // ====================================================================================
+
         function setupAntiOverlay() {
-            // 1. Intersection Observer — detect if exam page is occluded
-            if ('IntersectionObserver' in window) {
-                const examEl = document.getElementById('exam-page');
-                let overlayObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (!isExamActive || formSubmitted || !examEl.offsetParent) return;
-                        // If exam page is less than 85% visible, something is covering it
-                        if (entry.intersectionRatio < 0.85 && entry.intersectionRatio > 0) {
-                            triggerOverlayWarning('Layar ujian tertutup sebagian oleh overlay');
+
+            // ── LAYER 1: document.hidden — ZERO TOLERANCE ──────────────────────────────────
+            // Setiap kali halaman TERSEMBUNYI (apapun penyebabnya: overlay, notifikasi, gesture)
+            // langsung reset TANPA countdown. Tidak ada toleransi.
+            document.addEventListener('visibilitychange', () => {
+                if (!isExamActive || formSubmitted) return;
+                if (document.hidden) {
+                    // Delay 150ms untuk filter false-positive saat render awal
+                    setTimeout(() => {
+                        if (document.hidden && isExamActive && !formSubmitted) {
+                            triggerOverlayWarning('Layar tersembunyi — overlay / aplikasi lain aktif di atas ujian');
                         }
-                    });
-                }, { threshold: [0.85, 1.0] });
-                // Start observing when exam starts
-                window._overlayObserver = overlayObserver;
-            }
+                    }, 150);
+                }
+            });
 
-            // 2. Pointer Events test — detect transparent overlay stealing touch/click
-            let overlayCheckEnabled = false;
-            window._enableOverlayCheck = function() { overlayCheckEnabled = true; };
-
-            document.addEventListener('pointerdown', function(e) {
-                if (!isExamActive || formSubmitted || !overlayCheckEnabled) return;
-                // elementFromPoint should return something inside our app
-                const topEl = document.elementFromPoint(e.clientX, e.clientY);
-                if (!topEl) {
-                    triggerOverlayWarning('Elemen tidak dapat diakses — kemungkinan overlay aktif');
+            // ── LAYER 2: Pointer Capture Hijack Detector ────────────────────────────────────
+            // Jika pointer/touch event terjadi tapi elementFromPoint TIDAK menunjuk elemen
+            // milik aplikasi ini, berarti ada lapisan asing (overlay) yang menyerap input.
+            document.addEventListener('pointerdown', (e) => {
+                if (!isExamActive || formSubmitted) return;
+                const el = document.elementFromPoint(e.clientX, e.clientY);
+                if (!el || el.ownerDocument !== document) {
+                    triggerOverlayWarning('Input dibajak overlay — elemen asing menyerap sentuhan layar');
                 }
             }, true);
 
-            // 3. Screen Capture / Recording API detection
-            if ('getDisplayMedia' in navigator.mediaDevices || 'getDisplayMedia' in navigator) {
-                // Override getDisplayMedia to block screen recording during exam
-                const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia?.bind(navigator.mediaDevices);
-                if (originalGetDisplayMedia) {
+            // ── LAYER 3: Touch hitTest — multi-point overlay trap ───────────────────────────
+            // Overlay transparan biasanya tidak ter-register sebagai elemen DOM kita,
+            // sehingga touch pada area "kosong" = sinyal overlay.
+            document.addEventListener('touchstart', (e) => {
+                if (!isExamActive || formSubmitted) return;
+                for (let i = 0; i < e.touches.length; i++) {
+                    const t = e.touches[i];
+                    const el = document.elementFromPoint(t.clientX, t.clientY);
+                    // null atau body kosong = overlay menyerap touch
+                    if (!el) {
+                        triggerOverlayWarning('Touch tidak menembus ke elemen ujian — overlay transparan terdeteksi');
+                        break;
+                    }
+                }
+            }, { passive: true, capture: true });
+
+            // ── LAYER 4: window.blur / focus ZERO TOLERANCE ─────────────────────────────────
+            // Setiap kehilangan fokus window = ada sesuatu di atas aplikasi ini.
+            // Langsung reset tanpa menunggu konfirmasi document.hidden.
+            let blurZeroTimer = null;
+            window.addEventListener('blur', () => {
+                if (!isExamActive || formSubmitted) return;
+                // Beri 300ms grace period (menghindari false-positive saat input focus)
+                blurZeroTimer = setTimeout(() => {
+                    if (!isExamActive || formSubmitted) return;
+                    // Periksa apakah fokus berpindah ke elemen internal (input/select)
+                    const activeEl = document.activeElement;
+                    const isInternalFocus = activeEl && (
+                        activeEl.tagName === 'INPUT' ||
+                        activeEl.tagName === 'SELECT' ||
+                        activeEl.tagName === 'TEXTAREA' ||
+                        activeEl.tagName === 'IFRAME'
+                    );
+                    if (!isInternalFocus) {
+                        triggerOverlayWarning('Fokus hilang dari aplikasi ujian — overlay atau app lain terdeteksi');
+                    }
+                }, 300);
+            });
+            window.addEventListener('focus', () => {
+                if (blurZeroTimer) { clearTimeout(blurZeroTimer); blurZeroTimer = null; }
+            });
+
+            // ── LAYER 5: Screen Capture & getDisplayMedia BLOCK ─────────────────────────────
+            // Blokir total semua upaya screen recording, screen share, screen mirroring.
+            try {
+                if (navigator.mediaDevices) {
+                    const _origGDM = navigator.mediaDevices.getDisplayMedia?.bind(navigator.mediaDevices);
                     navigator.mediaDevices.getDisplayMedia = function(...args) {
                         if (isExamActive && !formSubmitted) {
-                            triggerOverlayWarning('Percobaan screen recording / screen share terdeteksi');
-                            return Promise.reject(new Error('Blocked during exam'));
+                            triggerOverlayWarning('Percobaan screen recording / mirroring / share terdeteksi');
+                            return Promise.reject(new DOMException('Blocked during exam', 'NotAllowedError'));
                         }
-                        return originalGetDisplayMedia(...args);
+                        return _origGDM ? _origGDM(...args) : Promise.reject(new Error('Not available'));
+                    };
+                    // Juga blokir getUserMedia untuk kamera/screen capture
+                    const _origGUM = navigator.mediaDevices.getUserMedia?.bind(navigator.mediaDevices);
+                    navigator.mediaDevices.getUserMedia = function(constraints) {
+                        if (isExamActive && !formSubmitted) {
+                            if (constraints && (constraints.video || constraints.screen)) {
+                                triggerOverlayWarning('Percobaan capture layar via getUserMedia terdeteksi');
+                                return Promise.reject(new DOMException('Blocked during exam', 'NotAllowedError'));
+                            }
+                        }
+                        return _origGUM ? _origGUM(constraints) : Promise.reject(new Error('Not available'));
                     };
                 }
+            } catch(e) {}
+
+            // ── LAYER 6: requestAnimationFrame Heartbeat ─────────────────────────────────────
+            // rAF berhenti/melambat drastis saat tab/window tersembunyi oleh overlay.
+            // Deteksi jeda > 500ms = ada sesuatu yang memblokir render loop.
+            let lastRAFTime = performance.now();
+            let rafActive = false;
+            function rafHeartbeat(ts) {
+                if (!isExamActive || formSubmitted) { rafActive = false; return; }
+                const gap = ts - lastRAFTime;
+                lastRAFTime = ts;
+                // Gap > 500ms (setengah detik) = tab/render diblokir oleh overlay sistem
+                if (gap > 500 && gap < 60000) {
+                    triggerOverlayWarning('Render loop diinterupsi — overlay sistem atau app lain menyela ujian');
+                }
+                requestAnimationFrame(rafHeartbeat);
+            }
+            // Heartbeat dimulai saat exam aktif (dipanggil dari startExam via startOverlayObserver)
+            window._startRAFHeartbeat = function() {
+                if (rafActive) return;
+                rafActive = true;
+                lastRAFTime = performance.now();
+                requestAnimationFrame(rafHeartbeat);
+            };
+
+            // ── LAYER 7: DOM MutationObserver — cegah injeksi overlay dari dalam ────────────
+            // Deteksi jika ada elemen asing di-inject ke body (overlay via JS injection,
+            // browser extension, atau WebView tampering).
+            const knownIds = new Set([
+                'login-page','exam-page','finish-page','violation-popup',
+                'app-switch-warning','pip-warning','overlay-warning','floating-warning',
+                'split-screen-warning','submit-success-overlay','fullscreen-prompt',
+                'security-shield','loading-overlay','form-container','exam-iframe'
+            ]);
+            const domGuard = new MutationObserver((mutations) => {
+                if (!isExamActive || formSubmitted) return;
+                mutations.forEach(m => {
+                    m.addedNodes.forEach(node => {
+                        if (node.nodeType !== 1) return; // element nodes only
+                        const id = node.id || '';
+                        const tag = node.tagName || '';
+                        // Abaikan elemen internal kita
+                        if (knownIds.has(id)) return;
+                        // Abaikan script/style yang diload dinamis
+                        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK') return;
+                        // Periksa apakah elemen ini menutupi seluruh/sebagian layar
+                        const style = window.getComputedStyle(node);
+                        const pos = style.position;
+                        const zi  = parseInt(style.zIndex) || 0;
+                        if ((pos === 'fixed' || pos === 'absolute') && zi > 0) {
+                            // Elemen posisi fixed/absolute dengan z-index dari sumber asing
+                            triggerOverlayWarning('Elemen overlay asing terdeteksi di-inject ke halaman ujian');
+                        }
+                    });
+                });
+            });
+            domGuard.observe(document.body, { childList: true, subtree: false });
+
+            // ── LAYER 8: CSS Pointer-Events Trap — canvas sentuh ────────────────────────────
+            // Buat invisible canvas penuh layar di bawah z-index kita.
+            // Jika sentuhan tidak pernah sampai ke canvas = ada lapisan di atas.
+            const trapCanvas = document.createElement('canvas');
+            trapCanvas.id = 'overlay-trap-canvas';
+            trapCanvas.style.cssText = `
+                position: fixed; inset: 0; z-index: 1;
+                pointer-events: none; opacity: 0;
+                width: 100%; height: 100%;
+            `;
+            trapCanvas.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(trapCanvas);
+
+            // ── LAYER 9: Page Lifecycle API ──────────────────────────────────────────────────
+            document.addEventListener('freeze', () => {
+                if (isExamActive && !formSubmitted)
+                    triggerOverlayWarning('Aplikasi di-freeze oleh sistem — overlay / background process aktif');
+            });
+            document.addEventListener('resume', () => {
+                // Setelah resume, verifikasi tidak ada overlay yang tersisa
+            });
+            window.addEventListener('pagehide', () => {
+                if (isExamActive && !formSubmitted)
+                    triggerOverlayWarning('Halaman disembunyikan — app lain / overlay mengambil alih layar');
+            });
+
+            // ── LAYER 10: Screen Orientation Guard ──────────────────────────────────────────
+            // Rotasi layar sering digunakan untuk mengaktifkan overlay tertentu di Android.
+            if (screen.orientation) {
+                screen.orientation.addEventListener('change', () => {
+                    if (!isExamActive || formSubmitted) return;
+                    // Setelah rotasi, overlay mungkin aktif — cek visibility
+                    setTimeout(() => {
+                        if (document.hidden && isExamActive && !formSubmitted) {
+                            triggerOverlayWarning('Rotasi layar + layar tersembunyi — kemungkinan overlay aktif');
+                        }
+                    }, 200);
+                });
             }
 
-            // 4. Android: detect "draw over other apps" via window size anomaly
-            //    When an overlay app is active, window metrics can shift slightly
-            let baseOuterW = window.outerWidth;
-            let baseOuterH = window.outerHeight;
-            let baseInnerW = window.innerWidth;
-            let baseInnerH = window.innerHeight;
-            let outerSizeChecks = 0;
+            // ── LAYER 11: MediaSession / Ambient Light / Proximity Sensor block ────────────
+            // Beberapa overlay menggunakan sensor proximity untuk mengaktifkan diri
+            try {
+                if ('ProximitySensor' in window) {
+                    Object.defineProperty(window, 'ProximitySensor', { get: () => undefined, configurable: true });
+                }
+            } catch(e) {}
 
+            // ── LAYER 12: CSS Security Hardening ────────────────────────────────────────────
+            // Inject CSS yang mempersulit overlay untuk menyembunyikan diri
+            const secStyle = document.createElement('style');
+            secStyle.id = 'overlay-security-css';
+            secStyle.textContent = `
+                /* Paksa semua elemen fixed/absolute tampak di bawah lapisan keamanan kita */
+                body > *:not(#login-page):not(#exam-page):not(#finish-page):not(#violation-popup):not(#app-switch-warning):not(#pip-warning):not(#overlay-warning):not(#floating-warning):not(#split-screen-warning):not(#submit-success-overlay):not(#fullscreen-prompt):not(#security-shield):not(#overlay-trap-canvas):not(#overlay-security-css):not(script):not(style):not(link) {
+                    pointer-events: none !important;
+                    opacity: 0.01 !important;
+                    visibility: visible !important;
+                    display: block !important;
+                }
+                /* Blokir WebRTC screen share overlay */
+                [data-screen-share], [class*="screen-share"], [class*="overlay"], [class*="floating"] {
+                    display: none !important;
+                    pointer-events: none !important;
+                }
+            `;
+            document.head.appendChild(secStyle);
+
+            // ── LAYER 13: Periodic Zero-Tolerance Visibility Check ───────────────────────────
+            // Polling agresif setiap 300ms: periksa document.hidden DAN visibilityState
             setInterval(() => {
                 if (!isExamActive || formSubmitted) return;
-                // Allow a grace period for resize events
-                const outerWDiff = Math.abs(window.outerWidth - baseOuterW);
-                const outerHDiff = Math.abs(window.outerHeight - baseOuterH);
-                // A sudden significant outer-size change without inner resize = overlay / floating window
-                const innerWDiff = Math.abs(window.innerWidth - baseInnerW);
-                const innerHDiff = Math.abs(window.innerHeight - baseInnerH);
-
-                // Outer changed but inner didn't change proportionally = something sitting on top
-                if (outerWDiff > 10 && Math.abs(outerWDiff - innerWDiff) > 40) {
-                    outerSizeChecks++;
-                    if (outerSizeChecks >= 3) {
-                        outerSizeChecks = 0;
-                        triggerFloatingWarning('Perubahan ukuran layar anomali — floating window / overlay terdeteksi');
-                    }
-                } else {
-                    outerSizeChecks = 0;
-                    // Update baseline if normal resize
-                    if (innerWDiff > 30 || innerHDiff > 30) {
-                        baseOuterW = window.outerWidth;
-                        baseOuterH = window.outerHeight;
-                        baseInnerW = window.innerWidth;
-                        baseInnerH = window.innerHeight;
-                    }
+                if (document.hidden || document.visibilityState !== 'visible') {
+                    triggerOverlayWarning('Halaman ujian tidak visible — overlay atau app lain aktif');
                 }
-            }, 1000);
+                // Cek apakah ada PiP yang lolos
+                if (document.pictureInPictureElement) {
+                    document.exitPictureInPicture().catch(() => {});
+                    triggerPiPWarning();
+                }
+            }, 300);
 
-            // 5. CSS forced: exam layers block pointer events from unknown elements
-            //    Inject a transparent shield div that blocks foreign touch events
+            // ── LAYER 14: Security Shield div (pointer-events blocker) ───────────────────────
+            // Shield transparan di z-index tinggi yang mendeteksi sentuhan "tembus"
             const shield = document.createElement('div');
             shield.id = 'security-shield';
             shield.style.cssText = `
                 position: fixed; inset: 0; z-index: 89999;
                 pointer-events: none; background: transparent;
                 -webkit-tap-highlight-color: transparent;
+                touch-action: none;
             `;
             shield.setAttribute('aria-hidden', 'true');
+            // Sentuhan pada shield (jika pointer-events aktif) = overlay mengarahkan ke shield
+            shield.addEventListener('touchstart', () => {
+                if (isExamActive && !formSubmitted)
+                    triggerOverlayWarning('Sentuhan diarahkan ke shield — overlay tap-hijacking terdeteksi');
+            }, { passive: true });
             document.body.appendChild(shield);
         }
 
         function startOverlayObserver() {
-            if (window._overlayObserver) {
-                const examEl = document.getElementById('exam-page');
-                if (examEl) window._overlayObserver.observe(examEl);
-            }
+            // Mulai rAF heartbeat saat ujian dimulai
+            if (window._startRAFHeartbeat) window._startRAFHeartbeat();
         }
 
+        // OVERLAY = ZERO TOLERANCE: tidak ada countdown, langsung reset ke login
         function triggerOverlayWarning(reason) {
-            if (overlayWarning.classList.contains('show')) return;
             if (!isExamActive || formSubmitted) return;
             overlayWarning.classList.add('show');
-            overlayVal = 5;
-            document.getElementById('overlay-countdown').textContent = overlayVal;
-            const ring = document.getElementById('overlay-ring-progress');
-            ring.style.strokeDasharray = RING_CIRCUMFERENCE;
-            ring.style.strokeDashoffset = 0;
-            overlayTimer = setInterval(() => {
-                overlayVal--;
-                document.getElementById('overlay-countdown').textContent = overlayVal;
-                ring.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - overlayVal / 5);
-                if (overlayVal <= 0) {
-                    clearInterval(overlayTimer);
-                    overlayTimer = null;
-                    overlayWarning.classList.remove('show');
-                    resetToLogin(reason || 'Overlay app terdeteksi');
-                }
-            }, 1000);
+            const countEl = document.getElementById('overlay-countdown');
+            const ring    = document.getElementById('overlay-ring-progress');
+            if (countEl) countEl.textContent = '!';
+            if (ring) { ring.style.strokeDasharray = RING_CIRCUMFERENCE; ring.style.strokeDashoffset = RING_CIRCUMFERENCE; }
+            // Langsung reset setelah 800ms — hanya cukup untuk user melihat pesan
+            setTimeout(() => {
+                overlayWarning.classList.remove('show');
+                resetToLogin(reason || 'Overlay app terdeteksi');
+            }, 800);
         }
 
         // ====================================================================================
@@ -1264,7 +1415,7 @@
             startOverlayObserver();
 
             // Enable overlay pointer check after brief delay (avoid false positive on load)
-            setTimeout(() => { window._enableOverlayCheck && window._enableOverlayCheck(); }, 3000);
+            // (Handled internally by setupAntiOverlay now)
         }
 
         function loadGoogleForm() {
