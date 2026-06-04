@@ -1,0 +1,493 @@
+/* ================================================================
+   PSAT SECURE EXAM — Main Stylesheet (PostCSS Source)
+   SMA Khairul Ulum
+   ================================================================ */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────────── */
+:root {
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+
+  --color-primary:   #1a472a;
+  --color-primary-dark: #0d2818;
+  --color-gold:      #d4af37;
+  --color-gold-light:#f4d03f;
+  --color-gold-dark: #b8960c;
+  --color-danger:    #dc2626;
+  --color-warning:   #ea580c;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --ring-circumference: 226px;
+  --transition-fast:  0.15s ease;
+  --transition-base:  0.3s ease;
+  --transition-slow:  0.5s ease;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-primary); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 4px; }
+
+/* ── Global Security: No Selection / No Drag ─────────────────── */
+* {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, select, textarea {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  user-select: text !important;
+}
+
+/* ── HTML/Body Lock ───────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  height: -webkit-fill-available;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+/* ── Login Page Scroll ────────────────────────────────────────── */
+#login-page {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 100%;
+}
+
+/* ── Keyframe Animations ──────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+  50%       { box-shadow: 0 0 20px 10px rgba(212,175,55,0.2); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-10px); }
+  75%       { transform: translateX(10px); }
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+@keyframes pulseRed {
+  0%, 100% { background-color: #dc2626; }
+  50%       { background-color: #991b1b; }
+}
+@keyframes pulseOrange {
+  0%, 100% { background-color: #ea580c; }
+  50%       { background-color: #9a3412; }
+}
+@keyframes warningPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.02); opacity: 0.9; }
+}
+@keyframes dangerFlash {
+  0%, 100% { border-color: #ef4444; }
+  50%       { border-color: #fca5a5; }
+}
+@keyframes bgScan {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}
+@keyframes countdownPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.15); color: #fca5a5; }
+}
+
+/* ── Utility Animation Classes ────────────────────────────────── */
+.animate-fade-in    { animation: fadeIn 0.5s ease-out forwards; }
+.animate-pulse-gold { animation: pulseGold 2s infinite; }
+.animate-shake      { animation: shake 0.5s ease-in-out; }
+.logo-shimmer       { animation: shimmer 3s ease-in-out infinite; }
+
+/* ── Background Gradients ─────────────────────────────────────── */
+.bg-gradient-main { background: linear-gradient(135deg, #1a472a 0%, #0d2818 50%, #1a472a 100%); }
+.bg-gradient-gold { background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%); }
+
+/* ── Glass Effect Card ────────────────────────────────────────── */
+.glass-effect {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ── Pattern Overlay ──────────────────────────────────────────── */
+.pattern-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── School Logo ──────────────────────────────────────────────── */
+.school-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* ── Touch Targets ────────────────────────────────────────────── */
+button, select, input {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* ── Exam Page Layout ─────────────────────────────────────────── */
+#exam-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: -webkit-fill-available;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+
+#form-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================================================================
+   SECURITY WARNING OVERLAYS
+   ================================================================ */
+
+/* ── Base Warning Mixin (PostCSS Nested) ──────────────────────── */
+.security-overlay-base {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  &.show { display: flex; }
+}
+
+/* ── Split Screen Warning ─────────────────────────────────────── */
+#split-screen-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.97);
+  z-index: 99999;
+
+  .split-warn-box {
+    background: #dc2626;
+    border-radius: 24px;
+    padding: 40px 32px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: pulseRed 1.5s infinite;
+  }
+}
+
+/* ── Submit Success Overlay ───────────────────────────────────── */
+#submit-success-overlay {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.92);
+  z-index: 99998;
+
+  .submit-box {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 32px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ── App Switch Warning ───────────────────────────────────────── */
+#app-switch-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.98);
+  z-index: 999999;
+
+  .app-warn-box {
+    background: linear-gradient(160deg, #7f1d1d 0%, #991b1b 100%);
+    border: 3px solid #fca5a5;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    animation: pulseRed 1s infinite, dangerFlash 1s infinite;
+    box-shadow: 0 0 60px rgba(220,38,38,0.5);
+  }
+}
+
+/* ── PiP Warning ──────────────────────────────────────────────── */
+#pip-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.99);
+  z-index: 9999999;
+
+  .pip-warn-box {
+    background: linear-gradient(160deg, #431407 0%, #7c2d12 100%);
+    border: 3px solid #fdba74;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    animation: pulseOrange 1s infinite;
+    box-shadow: 0 0 60px rgba(234,88,12,0.6);
+  }
+}
+
+/* ── Overlay Warning ──────────────────────────────────────────── */
+#overlay-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.99);
+  z-index: 9999998;
+
+  .overlay-warn-box {
+    background: linear-gradient(160deg, #1e1b4b 0%, #312e81 100%);
+    border: 3px solid #a5b4fc;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(99,102,241,0.6);
+    animation: warningPulse 1.5s infinite;
+  }
+}
+
+/* ── Floating App Warning ─────────────────────────────────────── */
+#floating-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.99);
+  z-index: 9999997;
+
+  .floating-warn-box {
+    background: linear-gradient(160deg, #14532d 0%, #166534 100%);
+    border: 3px solid #86efac;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(34,197,94,0.4);
+  }
+}
+
+/* ── NEW: Background Kill Warning ────────────────────────────── */
+#bg-kill-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.99);
+  z-index: 99999998;
+
+  .bg-kill-box {
+    background: linear-gradient(160deg, #0c0a09 0%, #1c1917 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 80px rgba(251,191,36,0.4);
+    animation: warningPulse 1s infinite;
+
+    .app-list {
+      background: rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      text-align: left;
+      max-height: 160px;
+      overflow-y: auto;
+      border: 1px solid rgba(251,191,36,0.3);
+
+      & p {
+        font-size: 11px;
+        color: #fde68a;
+        font-family: var(--font-body);
+        padding: 2px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+    }
+  }
+}
+
+/* ── NEW: Chat Bubble Warning ─────────────────────────────────── */
+#bubble-warning {
+  @extend .security-overlay-base;
+  background: rgba(0,0,0,0.99);
+  z-index: 99999996;
+
+  .bubble-warn-box {
+    background: linear-gradient(160deg, #450a0a 0%, #7f1d1d 100%);
+    border: 3px solid #f87171;
+    border-radius: 28px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 70px rgba(248,113,113,0.5);
+    animation: pulseRed 1.2s infinite;
+  }
+}
+
+/* ── Countdown Ring ───────────────────────────────────────────── */
+.countdown-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 20px;
+
+  & svg { transform: rotate(-90deg); }
+
+  & .countdown-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    font-family: var(--font-body);
+    animation: countdownPulse 1s infinite;
+  }
+}
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.15);
+  stroke-width: 7;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: #fca5a5;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 226;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* ── Header Safe Area ─────────────────────────────────────────── */
+.header-safe {
+  padding-left: max(16px, var(--safe-left));
+  padding-right: max(16px, var(--safe-right));
+}
+
+/* ── Notification Badges ──────────────────────────────────────── */
+.notif-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(212,175,55,0.15);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 10px;
+  color: #d4af37;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+.shield-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 10px;
+  color: #4ade80;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+/* ── Security Scan Line Effect on Warnings ────────────────────── */
+.security-scan {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: bgScan 2s linear infinite;
+  }
+}
+
+/* ── Violation Popup ──────────────────────────────────────────── */
+#violation-popup {
+  .warn-inner {
+    animation: shake 0.5s ease-in-out;
+  }
+}
+
+/* ── Fullscreen Prompt ────────────────────────────────────────── */
+#fullscreen-prompt {
+  .security-list {
+    & li { transition: color var(--transition-fast); }
+    & li:hover { color: #fbbf24; }
+  }
+}
+
+/* ── Form Inputs Focus Enhancement ───────────────────────────── */
+.exam-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #bbf7d0;
+  border-radius: 12px;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: #1f2937;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+  &:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22,163,74,0.2);
+  }
+}
+
+/* ── Responsive Tweaks ────────────────────────────────────────── */
+@media (max-width: 390px) {
+  .app-warn-box,
+  .pip-warn-box,
+  .overlay-warn-box,
+  .floating-warn-box,
+  .bg-kill-box,
+  .bubble-warn-box {
+    padding: 24px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
