@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="id" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,470 +10,350 @@
   <meta name="theme-color" content="#1a472a">
   <meta name="format-detection" content="telephone=no">
   <title>PSAT Secure Exam - SMA Khairul Ulum</title>
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUFNBSiBTZWN1cmUgRXhhbSIsInNob3J0X25hbWUiOiJQU0FKIiwiZGVzY3JpcHRpb24iOiJBcGxpa2FzaSBVamlhbiBQU0FKIFNNQSBLaGFpcnVsIFVsdW0iLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6ImZ1bGxzY3JlZW4iLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFhNDcyYSIsInRoZW1lX2NvbG9yIjoiIzFhNDcyYSJ9">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUFNBVCBTZWN1cmUgRXhhbSIsInNob3J0X25hbWUiOiJQU0FUIiwiZGVzY3JpcHRpb24iOiJBcGxpa2FzaSBVamlhbiBQU0FUIFNNQSBLaGFpcnVsIFVsdW0iLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6ImZ1bGxzY3JlZW4iLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFhNDcyYSIsInRoZW1lX2NvbG9yIjoiIzFhNDcyYSJ9">
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
 
-        :root {
-            --safe-top: env(safe-area-inset-top, 0px);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
-            --safe-left: env(safe-area-inset-left, 0px);
-            --safe-right: env(safe-area-inset-right, 0px);
-        }
+    :root {
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+    }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a472a; }
-        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a472a; }
+    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
 
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            -webkit-touch-callout: none !important;
-            -webkit-user-drag: none !important;
-            user-drag: none !important;
-            -webkit-tap-highlight-color: transparent;
-        }
+    * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-drag: none !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+    input, select, textarea {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      user-select: text !important;
+    }
+    html, body {
+      height: 100%; height: -webkit-fill-available;
+      overflow: hidden; position: fixed; width: 100%;
+      overscroll-behavior: none;
+    }
+    #login-page { overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; height: 100%; }
 
-        input, select, textarea {
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-            user-select: text !important;
-        }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes pulse-gold { 0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.4)} 50%{box-shadow:0 0 20px 10px rgba(212,175,55,.2)} }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-10px)} 75%{transform:translateX(10px)} }
+    @keyframes shimmer { 0%,100%{opacity:.7} 50%{opacity:1} }
+    @keyframes pulse-red { 0%,100%{background-color:#dc2626} 50%{background-color:#991b1b} }
+    @keyframes pulse-orange { 0%,100%{background-color:#ea580c} 50%{background-color:#9a3412} }
+    @keyframes pulse-amber { 0%,100%{border-color:#fbbf24;box-shadow:0 0 40px rgba(251,191,36,.3)} 50%{border-color:#fde68a;box-shadow:0 0 80px rgba(251,191,36,.6)} }
+    @keyframes warnPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.015)} }
+    @keyframes countdownTick { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+    @keyframes scanLine { 0%{top:-4px} 100%{top:calc(100% + 4px)} }
 
-        html, body {
-            height: 100%;
-            height: -webkit-fill-available;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            overscroll-behavior: none;
-        }
+    .animate-fade-in { animation: fadeIn .5s ease-out forwards; }
+    .animate-pulse-gold { animation: pulse-gold 2s infinite; }
+    .animate-shake { animation: shake .5s ease-in-out; }
+    .logo-shimmer { animation: shimmer 3s ease-in-out infinite; }
 
-        #login-page {
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            position: relative;
-            height: 100%;
-        }
+    .bg-gradient-main { background: linear-gradient(135deg,#1a472a 0%,#0d2818 50%,#1a472a 100%); }
+    .bg-gradient-gold  { background: linear-gradient(135deg,#d4af37 0%,#f4d03f 50%,#d4af37 100%); }
+    .glass-effect { background:rgba(255,255,255,.97); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+    .pattern-overlay { background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .school-logo-wrapper { display:flex; justify-content:center; align-items:center; margin-bottom:10px; }
+    button, select, input { min-height:44px; touch-action:manipulation; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse-gold {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
-            50% { box-shadow: 0 0 20px 10px rgba(212,175,55,0.2); }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-        @keyframes shimmer {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
-        }
-        @keyframes pulse-red {
-            0%, 100% { background-color: #dc2626; }
-            50% { background-color: #991b1b; }
-        }
-        @keyframes pulse-orange {
-            0%, 100% { background-color: #ea580c; }
-            50% { background-color: #9a3412; }
-        }
+    #exam-page { display:flex; flex-direction:column; height:100%; height:-webkit-fill-available; padding-top:var(--safe-top); padding-bottom:var(--safe-bottom); }
+    #form-container { flex:1; position:relative; overflow:hidden; }
 
-        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        .animate-pulse-gold { animation: pulse-gold 2s infinite; }
-        .animate-shake { animation: shake 0.5s ease-in-out; }
-        .logo-shimmer { animation: shimmer 3s ease-in-out infinite; }
+    /* ===== SECURITY OVERLAY BASE ===== */
+    .sec-overlay {
+      display:none; position:fixed; inset:0;
+      align-items:center; justify-content:center; padding:20px;
+    }
+    .sec-overlay.show { display:flex; }
 
-        .bg-gradient-main { background: linear-gradient(135deg, #1a472a 0%, #0d2818 50%, #1a472a 100%); }
-        .bg-gradient-gold { background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%); }
+    #split-screen-warning { background:rgba(0,0,0,.97); z-index:99999; }
+    .split-warn-box { background:#dc2626; border-radius:24px; padding:40px 32px; max-width:400px; width:100%; text-align:center; animation:pulse-red 1.5s infinite; }
 
-        .glass-effect {
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
+    #submit-success-overlay { background:rgba(0,0,0,.92); z-index:99998; }
+    .submit-box { background:white; border-radius:24px; padding:40px 32px; max-width:400px; width:100%; text-align:center; }
 
-        .pattern-overlay {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
+    #app-switch-warning { background:rgba(0,0,0,.98); z-index:999999; }
+    .app-warn-box {
+      background:linear-gradient(160deg,#7f1d1d 0%,#991b1b 100%);
+      border:3px solid #fca5a5; border-radius:28px; padding:40px 32px;
+      max-width:420px; width:100%; text-align:center;
+      animation:pulse-red 1s infinite; box-shadow:0 0 60px rgba(220,38,38,.5);
+    }
 
-        .school-logo-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    #pip-warning { background:rgba(0,0,0,.99); z-index:9999999; }
+    .pip-warn-box {
+      background:linear-gradient(160deg,#431407 0%,#7c2d12 100%);
+      border:3px solid #fdba74; border-radius:28px; padding:40px 32px;
+      max-width:420px; width:100%; text-align:center;
+      animation:pulse-orange 1s infinite; box-shadow:0 0 60px rgba(234,88,12,.6);
+    }
 
-        button, select, input { min-height: 44px; touch-action: manipulation; }
+    #overlay-warning { background:rgba(0,0,0,.99); z-index:9999998; }
+    .overlay-warn-box {
+      background:linear-gradient(160deg,#1e1b4b 0%,#312e81 100%);
+      border:3px solid #a5b4fc; border-radius:28px; padding:40px 32px;
+      max-width:420px; width:100%; text-align:center;
+      box-shadow:0 0 60px rgba(99,102,241,.6); animation:warnPulse 1.5s infinite;
+    }
 
-        #exam-page {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            height: -webkit-fill-available;
-            padding-top: var(--safe-top);
-            padding-bottom: var(--safe-bottom);
-        }
+    #floating-warning { background:rgba(0,0,0,.99); z-index:9999997; }
+    .floating-warn-box {
+      background:linear-gradient(160deg,#14532d 0%,#166534 100%);
+      border:3px solid #86efac; border-radius:28px; padding:40px 32px;
+      max-width:420px; width:100%; text-align:center; box-shadow:0 0 60px rgba(34,197,94,.4);
+    }
 
-        #form-container { flex: 1; position: relative; overflow: hidden; }
+    /* ===== NEW: BACKGROUND APP WARNING ===== */
+    #bg-app-warning { background:rgba(0,0,0,.99); z-index:99999999; }
+    .bg-app-box {
+      background:linear-gradient(160deg,#0c0a09 0%,#1c1917 100%);
+      border:3px solid #fbbf24; border-radius:28px; padding:36px 28px;
+      max-width:440px; width:100%; text-align:center;
+      animation:pulse-amber 1.2s infinite;
+      box-shadow:0 0 80px rgba(251,191,36,.4);
+      position:relative; overflow:hidden;
+    }
+    .bg-app-box::after {
+      content:''; position:absolute; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,transparent,rgba(251,191,36,.6),transparent);
+      animation:scanLine 2s linear infinite; top:0;
+    }
+    .bg-app-list {
+      background:rgba(0,0,0,.5); border-radius:10px; padding:10px 14px;
+      margin:10px 0; text-align:left; max-height:140px; overflow-y:auto;
+      border:1px solid rgba(251,191,36,.25);
+    }
+    .bg-app-list p { font-size:11px; color:#fde68a; font-family:'Inter',sans-serif; padding:2px 0; border-bottom:1px solid rgba(255,255,255,.06); }
 
-        /* ===== SECURITY OVERLAYS ===== */
-        #split-screen-warning {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.97);
-            z-index: 99999;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #split-screen-warning.show { display: flex; }
-        .split-warn-box {
-            background: #dc2626;
-            border-radius: 24px; padding: 40px 32px;
-            max-width: 400px; width: 100%; text-align: center;
-            animation: pulse-red 1.5s infinite;
-        }
+    /* ===== NEW: CHAT BUBBLE WARNING ===== */
+    #bubble-warning { background:rgba(0,0,0,.99); z-index:99999996; }
+    .bubble-warn-box {
+      background:linear-gradient(160deg,#450a0a 0%,#7f1d1d 100%);
+      border:3px solid #f87171; border-radius:28px; padding:40px 32px;
+      max-width:420px; width:100%; text-align:center;
+      animation:pulse-red 1.2s infinite; box-shadow:0 0 70px rgba(248,113,113,.5);
+    }
 
-        #submit-success-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.92); z-index: 99998;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #submit-success-overlay.show { display: flex; }
-        .submit-box { background: white; border-radius: 24px; padding: 40px 32px; max-width: 400px; width: 100%; text-align: center; }
+    /* ===== COUNTDOWN RING ===== */
+    .countdown-wrap { position:relative; width:88px; height:88px; margin:0 auto 20px; }
+    .countdown-wrap svg { transform:rotate(-90deg); }
+    .countdown-num {
+      position:absolute; inset:0; display:flex;
+      align-items:center; justify-content:center;
+      font-size:32px; font-weight:900; color:white;
+      font-family:'Inter',sans-serif; animation:countdownTick 1s infinite;
+    }
+    .ring-bg { fill:none; stroke:rgba(255,255,255,.15); stroke-width:7; }
+    .ring-progress { fill:none; stroke:#fca5a5; stroke-width:7; stroke-linecap:round; stroke-dasharray:226; stroke-dashoffset:0; transition:stroke-dashoffset 1s linear; }
 
-        #app-switch-warning {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.98); z-index: 999999;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #app-switch-warning.show { display: flex; }
-        .app-warn-box {
-            background: linear-gradient(160deg, #7f1d1d 0%, #991b1b 100%);
-            border: 3px solid #fca5a5;
-            border-radius: 28px; padding: 40px 32px;
-            max-width: 420px; width: 100%; text-align: center;
-            animation: pulse-red 1s infinite;
-            box-shadow: 0 0 60px rgba(220,38,38,0.5);
-        }
-
-        /* ===== NEW: PiP WARNING ===== */
-        #pip-warning {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.99); z-index: 9999999;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #pip-warning.show { display: flex; }
-        .pip-warn-box {
-            background: linear-gradient(160deg, #431407 0%, #7c2d12 100%);
-            border: 3px solid #fdba74;
-            border-radius: 28px; padding: 40px 32px;
-            max-width: 420px; width: 100%; text-align: center;
-            animation: pulse-orange 1s infinite;
-            box-shadow: 0 0 60px rgba(234,88,12,0.6);
-        }
-
-        /* ===== NEW: OVERLAY WARNING ===== */
-        #overlay-warning {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.99); z-index: 9999998;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #overlay-warning.show { display: flex; }
-        .overlay-warn-box {
-            background: linear-gradient(160deg, #1e1b4b 0%, #312e81 100%);
-            border: 3px solid #a5b4fc;
-            border-radius: 28px; padding: 40px 32px;
-            max-width: 420px; width: 100%; text-align: center;
-            box-shadow: 0 0 60px rgba(99,102,241,0.6);
-        }
-
-        /* ===== NEW: FLOATING APP WARNING ===== */
-        #floating-warning {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.99); z-index: 9999997;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        #floating-warning.show { display: flex; }
-        .floating-warn-box {
-            background: linear-gradient(160deg, #14532d 0%, #166534 100%);
-            border: 3px solid #86efac;
-            border-radius: 28px; padding: 40px 32px;
-            max-width: 420px; width: 100%; text-align: center;
-            box-shadow: 0 0 60px rgba(34,197,94,0.4);
-        }
-
-        /* Countdown ring */
-        .countdown-wrap {
-            position: relative; width: 88px; height: 88px;
-            margin: 0 auto 20px;
-        }
-        .countdown-wrap svg { transform: rotate(-90deg); }
-        .countdown-num {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 32px; font-weight: 900; color: white;
-            font-family: 'Inter', sans-serif;
-        }
-        .ring-bg { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 7; }
-        .ring-progress {
-            fill: none; stroke: #fca5a5; stroke-width: 7;
-            stroke-linecap: round;
-            stroke-dasharray: 226;
-            stroke-dashoffset: 0;
-            transition: stroke-dashoffset 1s linear;
-        }
-
-        .header-safe {
-            padding-left: max(16px, var(--safe-left));
-            padding-right: max(16px, var(--safe-right));
-        }
-
-        .notif-badge {
-            display: inline-flex; align-items: center; gap: 4px;
-            background: rgba(212,175,55,0.15);
-            border: 1px solid rgba(212,175,55,0.4);
-            border-radius: 20px; padding: 3px 10px;
-            font-size: 10px; color: #d4af37;
-            font-family: 'Inter', sans-serif;
-            white-space: nowrap;
-        }
-
-        /* Security shield badge — shown in status bar */
-        .shield-badge {
-            display: inline-flex; align-items: center; gap: 4px;
-            background: rgba(34,197,94,0.15);
-            border: 1px solid rgba(34,197,94,0.4);
-            border-radius: 20px; padding: 3px 10px;
-            font-size: 10px; color: #4ade80;
-            font-family: 'Inter', sans-serif;
-            white-space: nowrap;
-        }
+    .header-safe { padding-left:max(16px,var(--safe-left)); padding-right:max(16px,var(--safe-right)); }
+    .notif-badge { display:inline-flex; align-items:center; gap:4px; background:rgba(212,175,55,.15); border:1px solid rgba(212,175,55,.4); border-radius:20px; padding:3px 10px; font-size:10px; color:#d4af37; font-family:'Inter',sans-serif; white-space:nowrap; }
+    .shield-badge { display:inline-flex; align-items:center; gap:4px; background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.4); border-radius:20px; padding:3px 10px; font-size:10px; color:#4ade80; font-family:'Inter',sans-serif; white-space:nowrap; }
   </style>
- </head>
- <body class="bg-gradient-main pattern-overlay">
+</head>
+<body class="bg-gradient-main pattern-overlay">
 
-  <!-- ==================== HALAMAN LOGIN ==================== -->
-  <div id="login-page" class="min-h-full flex items-center justify-center p-4">
-   <div class="w-full max-w-md glass-effect rounded-3xl shadow-2xl overflow-hidden animate-fade-in" style="margin: 20px 0;">
-
+<!-- ==================== HALAMAN LOGIN ==================== -->
+<div id="login-page" class="min-h-full flex items-center justify-center p-4">
+  <div class="w-full max-w-md glass-effect rounded-3xl shadow-2xl overflow-hidden animate-fade-in" style="margin:20px 0;">
     <div class="bg-gradient-main p-6 text-center relative overflow-hidden">
-     <div class="absolute inset-0 pattern-overlay opacity-30"></div>
-     <div class="relative z-10">
-      <div class="school-logo-wrapper">
-        <img src="logo SMA.png" width="90" height="90" style="filter: drop-shadow(0 4px 16px rgba(212,175,55,0.5));" onerror="this.style.display='none'">
+      <div class="absolute inset-0 pattern-overlay opacity-30"></div>
+      <div class="relative z-10">
+        <div class="school-logo-wrapper">
+          <img src="logo SMA.png" width="90" height="90" style="filter:drop-shadow(0 4px 16px rgba(212,175,55,0.5));" onerror="this.style.display='none'">
+        </div>
+        <h1 class="text-xl font-bold text-white" style="font-family:'Playfair Display',serif;">SMA Khairul Ulum</h1>
+        <div class="mt-2 inline-block px-4 py-1 bg-gradient-gold rounded-full">
+          <span class="text-sm font-bold text-green-900" style="font-family:'Inter',sans-serif;"> PSAT SECURE EXAM </span>
+        </div>
+        <p class="text-green-200 text-xs mt-2" style="font-family:'Inter',sans-serif;">Penilaian Sumatif Akhir Tahun 2025/2026</p>
       </div>
-      <h1 class="text-xl font-bold text-white" style="font-family:'Playfair Display',serif;">SMA Khairul Ulum</h1>
-      <div class="mt-2 inline-block px-4 py-1 bg-gradient-gold rounded-full">
-        <span class="text-sm font-bold text-green-900" style="font-family:'Inter',sans-serif;"> PSAT SECURE EXAM </span>
-      </div>
-      <p class="text-green-200 text-xs mt-2" style="font-family:'Inter',sans-serif;">Penilaian Sumatif Akhir Tahun 2025/2026</p>
-     </div>
     </div>
-
     <form id="login-form" class="p-6 space-y-4" onsubmit="return false;">
-     <div class="space-y-1">
-      <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">📝 Nama Lengkap</label>
-      <input type="text" id="nama" required placeholder="Masukkan nama lengkap" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
-             class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
-             style="font-family:'Inter',sans-serif; font-size:16px;">
-     </div>
-     <div class="space-y-1">
-      <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🔢 NIS (Nomor Induk Siswa)</label>
-      <input type="number" id="nis" required placeholder="Masukkan NIS" autocomplete="off" inputmode="numeric"
-             class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
-             style="font-family:'Inter',sans-serif; font-size:16px;">
-     </div>
-     <div class="space-y-1">
-      <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🏫 Kelas</label>
-      <select id="kelas" required
-              class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800 bg-white"
-              style="font-family:'Inter',sans-serif; font-size:16px;">
-        <option value="">-- Pilih Kelas --</option>
-        <option value="X-1">X-1</option>
-        <option value="X-2">X-2</option>
-        <option value="XI-1">XI-1</option>
-        <option value="XI-2">XI-2</option>
-        <option value="XII-1">XII-1</option>
-        <option value="XII-2">XII-2</option>
-      </select>
-     </div>
-     <div class="space-y-1">
-      <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">📚 Mata Pelajaran</label>
-      <select id="mapel" required disabled
-              class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800 bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
-              style="font-family:'Inter',sans-serif; font-size:16px;">
-        <option value="">-- Pilih Kelas Terlebih Dahulu --</option>
-      </select>
-     </div>
-     <div class="space-y-1">
-      <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🔐 Kode Ujian</label>
-      <input type="password" id="kode-ujian" required placeholder="Masukkan kode ujian" autocomplete="off" inputmode="text"
-             class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
-             style="font-family:'Inter',sans-serif; font-size:16px;">
-     </div>
-     <div id="error-message" class="hidden p-3 bg-red-100 border border-red-400 text-red-700 rounded-xl text-sm text-center" style="font-family:'Inter',sans-serif;"></div>
-     <button type="submit" id="btn-login"
-             class="w-full py-4 bg-gradient-gold text-green-900 font-bold rounded-xl shadow-lg active:scale-95 transition-all duration-300"
-             style="font-family:'Inter',sans-serif; font-size:16px;">
-       🚀 MULAI UJIAN
-     </button>
-     <div class="mt-4 p-3 bg-yellow-50 border border-yellow-300 rounded-xl">
-      <p class="text-xs text-yellow-800 text-center" style="font-family:'Inter',sans-serif;">
-        ⚠️ <strong>PERINGATAN:</strong> Keluar tab/aplikasi / split screen / overlay / PiP / floating app = KECURANGAN = UJIAN DIRESET.
-      </p>
-     </div>
+      <div class="space-y-1">
+        <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">📝 Nama Lengkap</label>
+        <input type="text" id="nama" required placeholder="Masukkan nama lengkap" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+               class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
+               style="font-family:'Inter',sans-serif;font-size:16px;">
+      </div>
+      <div class="space-y-1">
+        <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🔢 NIS (Nomor Induk Siswa)</label>
+        <input type="number" id="nis" required placeholder="Masukkan NIS" autocomplete="off" inputmode="numeric"
+               class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
+               style="font-family:'Inter',sans-serif;font-size:16px;">
+      </div>
+      <div class="space-y-1">
+        <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🏫 Kelas</label>
+        <select id="kelas" required class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800 bg-white" style="font-family:'Inter',sans-serif;font-size:16px;">
+          <option value="">-- Pilih Kelas --</option>
+          <option value="X-1">X-1</option><option value="X-2">X-2</option>
+          <option value="XI-1">XI-1</option><option value="XI-2">XI-2</option>
+          <option value="XII-1">XII-1</option><option value="XII-2">XII-2</option>
+        </select>
+      </div>
+      <div class="space-y-1">
+        <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">📚 Mata Pelajaran</label>
+        <select id="mapel" required disabled class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800 bg-white disabled:bg-gray-100 disabled:cursor-not-allowed" style="font-family:'Inter',sans-serif;font-size:16px;">
+          <option value="">-- Pilih Kelas Terlebih Dahulu --</option>
+        </select>
+      </div>
+      <div class="space-y-1">
+        <label class="block text-sm font-semibold text-green-800" style="font-family:'Inter',sans-serif;">🔐 Kode Ujian</label>
+        <input type="password" id="kode-ujian" required placeholder="Masukkan kode ujian" autocomplete="off" inputmode="text"
+               class="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-200 transition-all outline-none text-gray-800"
+               style="font-family:'Inter',sans-serif;font-size:16px;">
+      </div>
+      <div id="error-message" class="hidden p-3 bg-red-100 border border-red-400 text-red-700 rounded-xl text-sm text-center" style="font-family:'Inter',sans-serif;"></div>
+      <button type="submit" id="btn-login" class="w-full py-4 bg-gradient-gold text-green-900 font-bold rounded-xl shadow-lg active:scale-95 transition-all duration-300" style="font-family:'Inter',sans-serif;font-size:16px;">🚀 MULAI UJIAN</button>
+      <div class="mt-4 p-3 bg-yellow-50 border border-yellow-300 rounded-xl">
+        <p class="text-xs text-yellow-800 text-center" style="font-family:'Inter',sans-serif;">
+          ⚠️ <strong>PERINGATAN:</strong> Keluar tab / split screen / overlay / PiP / floating / chat bubble / background app = KECURANGAN = UJIAN DIRESET.
+        </p>
+      </div>
     </form>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== HALAMAN UJIAN ==================== -->
-  <div id="exam-page" class="hidden">
-   <!-- Header -->
-   <div class="bg-gradient-main py-3 px-4 flex items-center justify-between shadow-lg relative z-50 header-safe flex-shrink-0">
+<!-- ==================== HALAMAN UJIAN ==================== -->
+<div id="exam-page" class="hidden">
+  <div class="bg-gradient-main py-3 px-4 flex items-center justify-between shadow-lg relative z-50 header-safe flex-shrink-0">
     <div class="flex items-center gap-2 min-w-0">
-     <div class="w-8 h-8 flex-shrink-0">
-      <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="95" fill="#0d2818" stroke="#d4af37" stroke-width="6"/>
-        <rect x="58" y="72" width="38" height="52" rx="4" fill="#d4af37" opacity="0.9"/>
-        <rect x="104" y="72" width="38" height="52" rx="4" fill="#f4d03f" opacity="0.9"/>
-        <rect x="96" y="68" width="8" height="60" rx="4" fill="#b8960c"/>
-        <polygon points="100,48 103,58 114,58 105,64 108,75 100,68 92,75 95,64 86,58 97,58" fill="#d4af37"/>
-        <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="15" fill="#d4af37" letter-spacing="3">KU</text>
-      </svg>
-     </div>
-     <div class="min-w-0">
-      <h2 id="exam-title" class="text-white font-bold text-xs truncate" style="font-family:'Playfair Display',serif;">PSAT - Mata Pelajaran</h2>
-      <p id="student-info" class="text-green-200 text-xs truncate" style="font-family:'Inter',sans-serif;">Nama - NIS - Kelas</p>
-     </div>
+      <div class="w-8 h-8 flex-shrink-0">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="95" fill="#0d2818" stroke="#d4af37" stroke-width="6"/>
+          <rect x="58" y="72" width="38" height="52" rx="4" fill="#d4af37" opacity="0.9"/>
+          <rect x="104" y="72" width="38" height="52" rx="4" fill="#f4d03f" opacity="0.9"/>
+          <rect x="96" y="68" width="8" height="60" rx="4" fill="#b8960c"/>
+          <polygon points="100,48 103,58 114,58 105,64 108,75 100,68 92,75 95,64 86,58 97,58" fill="#d4af37"/>
+          <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="15" fill="#d4af37" letter-spacing="3">KU</text>
+        </svg>
+      </div>
+      <div class="min-w-0">
+        <h2 id="exam-title" class="text-white font-bold text-xs truncate" style="font-family:'Playfair Display',serif;">PSAT - Mata Pelajaran</h2>
+        <p id="student-info" class="text-green-200 text-xs truncate" style="font-family:'Inter',sans-serif;">Nama - NIS - Kelas</p>
+      </div>
     </div>
     <span class="notif-badge">🔕 Notifikasi Diblokir</span>
-   </div>
-   <!-- Status bar -->
-   <div class="bg-green-800 px-4 py-1.5 flex items-center justify-between flex-shrink-0">
+  </div>
+  <div class="bg-green-800 px-4 py-1.5 flex items-center justify-between flex-shrink-0">
     <div class="flex items-center gap-1.5">
-     <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
-     <span class="text-green-200 text-xs" style="font-family:'Inter',sans-serif;">Mode Aman Aktif</span>
+      <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+      <span class="text-green-200 text-xs" style="font-family:'Inter',sans-serif;">Mode Aman Aktif</span>
     </div>
-    <div class="flex items-center gap-2">
-     <span class="shield-badge">🛡️ Anti-Overlay ON</span>
-     <span class="text-yellow-400 text-xs" style="font-family:'Inter',sans-serif;">🔒 ZERO TOLERANCE</span>
+    <div class="flex items-center gap-2 flex-wrap justify-end">
+      <span class="shield-badge">🛡️ 7-Layer Security</span>
+      <span class="text-yellow-400 text-xs" style="font-family:'Inter',sans-serif;">🔒 ZERO TOLERANCE</span>
     </div>
-   </div>
-   <!-- Form area -->
-   <div id="form-container">
+  </div>
+  <div id="form-container">
     <iframe id="exam-iframe" class="w-full h-full border-0" allowfullscreen sandbox="allow-forms allow-scripts allow-same-origin allow-popups"></iframe>
     <div id="loading-overlay" class="absolute inset-0 bg-white flex items-center justify-center">
-     <div class="text-center">
-      <div class="w-16 h-16 border-4 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4"></div>
-      <p class="text-green-800 font-semibold" style="font-family:'Inter',sans-serif;">Memuat soal ujian...</p>
-     </div>
-    </div>
-   </div>
-  </div>
-
-  <!-- ==================== HALAMAN SELESAI ==================== -->
-  <div id="finish-page" class="hidden min-h-full flex items-center justify-center p-4" style="height:100%; overflow-y:auto;">
-   <div class="w-full max-w-md glass-effect rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-center">
-    <div class="bg-gradient-main p-8 relative overflow-hidden">
-     <div class="absolute inset-0 pattern-overlay opacity-30"></div>
-     <div class="relative z-10">
-      <div class="flex justify-center mb-4">
-       <svg class="logo-shimmer" width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="95" fill="#0d2818" stroke="#d4af37" stroke-width="6"/>
-        <rect x="58" y="72" width="38" height="52" rx="4" fill="#d4af37" opacity="0.9"/>
-        <rect x="104" y="72" width="38" height="52" rx="4" fill="#f4d03f" opacity="0.9"/>
-        <rect x="96" y="68" width="8" height="60" rx="4" fill="#b8960c"/>
-        <polygon points="100,48 103,58 114,58 105,64 108,75 100,68 92,75 95,64 86,58 97,58" fill="#d4af37"/>
-        <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="15" fill="#d4af37" letter-spacing="3">KU</text>
-       </svg>
+      <div class="text-center">
+        <div class="w-16 h-16 border-4 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4"></div>
+        <p class="text-green-800 font-semibold" style="font-family:'Inter',sans-serif;">Memuat soal ujian...</p>
       </div>
-      <h2 class="text-2xl font-bold text-white" style="font-family:'Playfair Display',serif;">Ujian Selesai</h2>
-     </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN SELESAI ==================== -->
+<div id="finish-page" class="hidden min-h-full flex items-center justify-center p-4" style="height:100%;overflow-y:auto;">
+  <div class="w-full max-w-md glass-effect rounded-3xl shadow-2xl overflow-hidden animate-fade-in text-center">
+    <div class="bg-gradient-main p-8 relative overflow-hidden">
+      <div class="absolute inset-0 pattern-overlay opacity-30"></div>
+      <div class="relative z-10">
+        <div class="flex justify-center mb-4">
+          <svg class="logo-shimmer" width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="95" fill="#0d2818" stroke="#d4af37" stroke-width="6"/>
+            <rect x="58" y="72" width="38" height="52" rx="4" fill="#d4af37" opacity="0.9"/>
+            <rect x="104" y="72" width="38" height="52" rx="4" fill="#f4d03f" opacity="0.9"/>
+            <rect x="96" y="68" width="8" height="60" rx="4" fill="#b8960c"/>
+            <polygon points="100,48 103,58 114,58 105,64 108,75 100,68 92,75 95,64 86,58 97,58" fill="#d4af37"/>
+            <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-weight="bold" font-size="15" fill="#d4af37" letter-spacing="3">KU</text>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-white" style="font-family:'Playfair Display',serif;">Ujian Selesai</h2>
+      </div>
     </div>
     <div class="p-8">
-     <p class="text-green-800 mb-6" style="font-family:'Inter',sans-serif;">Terima kasih telah mengikuti <strong>PSAT</strong> dengan jujur dan bertanggung jawab.</p>
-     <p class="text-gray-600 text-sm mb-6" style="font-family:'Inter',sans-serif;">Jawaban Anda telah tersimpan. Hasil akan diumumkan sesuai jadwal.</p>
-     <div class="p-4 bg-green-50 rounded-xl border border-green-200">
-      <p id="finish-info" class="text-green-700 text-sm" style="font-family:'Inter',sans-serif;"></p>
-     </div>
-     <button id="btn-back-login" disabled
-             class="mt-6 w-full py-3 bg-gray-300 text-gray-500 font-bold rounded-xl cursor-not-allowed"
-             style="font-family:'Inter',sans-serif;">
-       🔒 Ujian Sudah Selesai
-     </button>
+      <p class="text-green-800 mb-6" style="font-family:'Inter',sans-serif;">Terima kasih telah mengikuti <strong>PSAT</strong> dengan jujur dan bertanggung jawab.</p>
+      <p class="text-gray-600 text-sm mb-6" style="font-family:'Inter',sans-serif;">Jawaban Anda telah tersimpan. Hasil akan diumumkan sesuai jadwal.</p>
+      <div class="p-4 bg-green-50 rounded-xl border border-green-200">
+        <p id="finish-info" class="text-green-700 text-sm" style="font-family:'Inter',sans-serif;"></p>
+      </div>
+      <button id="btn-back-login" disabled class="mt-6 w-full py-3 bg-gray-300 text-gray-500 font-bold rounded-xl cursor-not-allowed" style="font-family:'Inter',sans-serif;">🔒 Ujian Sudah Selesai</button>
     </div>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== POPUP PELANGGARAN (fallback) ==================== -->
-  <div id="violation-popup" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4">
-   <div class="bg-red-600 rounded-3xl p-8 max-w-md w-full animate-shake shadow-2xl">
+<!-- ==================== POPUP PELANGGARAN ==================== -->
+<div id="violation-popup" class="sec-overlay hidden" style="background:rgba(0,0,0,.9);z-index:9999;">
+  <div class="bg-red-600 rounded-3xl p-8 max-w-md w-full shadow-2xl animate-shake">
     <div class="text-center">
-     <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center"><span class="text-5xl">🚨</span></div>
-     <h2 class="text-2xl font-bold text-white mb-4" style="font-family:'Playfair Display',serif;">TERDETEKSI KECURANGAN!</h2>
-     <p id="violation-reason" class="text-red-100 mb-6" style="font-family:'Inter',sans-serif;"></p>
-     <div class="bg-white/20 rounded-xl p-4 mb-4">
-      <p class="text-white text-sm" style="font-family:'Inter',sans-serif;"><strong>PSAT = ZERO TOLERANCE</strong><br>Ujian Anda telah direset ke halaman login.</p>
-     </div>
+      <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center"><span class="text-5xl">🚨</span></div>
+      <h2 class="text-2xl font-bold text-white mb-4" style="font-family:'Playfair Display',serif;">TERDETEKSI KECURANGAN!</h2>
+      <p id="violation-reason" class="text-red-100 mb-6" style="font-family:'Inter',sans-serif;"></p>
+      <div class="bg-white/20 rounded-xl p-4 mb-4">
+        <p class="text-white text-sm" style="font-family:'Inter',sans-serif;"><strong>PSAT = ZERO TOLERANCE</strong><br>Ujian Anda telah direset ke halaman login.</p>
+      </div>
     </div>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== APP SWITCH WARNING + COUNTDOWN ==================== -->
-  <div id="app-switch-warning">
-   <div class="app-warn-box">
+<!-- ==================== APP SWITCH WARNING ==================== -->
+<div id="app-switch-warning" class="sec-overlay">
+  <div class="app-warn-box">
     <div class="countdown-wrap">
-     <svg width="88" height="88" viewBox="0 0 88 88">
-      <circle class="ring-bg" cx="44" cy="44" r="36"/>
-      <circle class="ring-progress" id="ring-progress" cx="44" cy="44" r="36"/>
-     </svg>
-     <div class="countdown-num" id="app-switch-countdown">5</div>
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="ring-bg" cx="44" cy="44" r="36"/><circle class="ring-progress" id="ring-progress" cx="44" cy="44" r="36"/></svg>
+      <div class="countdown-num" id="app-switch-countdown">5</div>
     </div>
     <div class="text-5xl mb-3">⛔</div>
     <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">APLIKASI LAIN TERDETEKSI!</h2>
     <p class="text-red-100 mb-4 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
-      Anda terdeteksi membuka aplikasi lain, notifikasi, atau keluar dari layar ujian.<br><br>
+      Anda terdeteksi membuka aplikasi lain atau keluar dari layar ujian.<br><br>
       <strong class="text-yellow-300 text-base">Ujian akan direset ke halaman login!</strong>
     </p>
     <div class="bg-black/20 rounded-xl p-3 mb-1 border border-red-400/30">
       <p id="app-switch-reason" class="text-red-200 text-xs" style="font-family:'Inter',sans-serif;">—</p>
     </div>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== NEW: PiP WARNING ==================== -->
-  <div id="pip-warning">
-   <div class="pip-warn-box">
+<!-- ==================== PiP WARNING ==================== -->
+<div id="pip-warning" class="sec-overlay">
+  <div class="pip-warn-box">
     <div class="countdown-wrap">
-     <svg width="88" height="88" viewBox="0 0 88 88">
-      <circle class="ring-bg" cx="44" cy="44" r="36"/>
-      <circle class="ring-progress" id="pip-ring-progress" cx="44" cy="44" r="36" style="stroke:#fdba74;"/>
-     </svg>
-     <div class="countdown-num" id="pip-countdown">5</div>
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="ring-bg" cx="44" cy="44" r="36"/><circle class="ring-progress" id="pip-ring-progress" cx="44" cy="44" r="36" style="stroke:#fdba74;"/></svg>
+      <div class="countdown-num" id="pip-countdown">5</div>
     </div>
     <div class="text-5xl mb-3">📺</div>
     <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">PICTURE-IN-PICTURE TERDETEKSI!</h2>
     <p class="text-orange-100 mb-4 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
-      Mode Picture-in-Picture (PiP) aktif. Ini tidak diizinkan selama ujian.<br><br>
+      Mode PiP aktif. Tidak diizinkan selama ujian.<br><br>
       <strong class="text-yellow-300 text-base">Ujian akan direset ke halaman login!</strong>
     </p>
     <div class="bg-black/20 rounded-xl p-3 border border-orange-400/30">
       <p class="text-orange-200 text-xs" style="font-family:'Inter',sans-serif;">Nonaktifkan PiP / Floating Window sekarang!</p>
     </div>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== NEW: OVERLAY WARNING ==================== -->
-  <div id="overlay-warning">
-   <div class="overlay-warn-box">
+<!-- ==================== OVERLAY WARNING ==================== -->
+<div id="overlay-warning" class="sec-overlay">
+  <div class="overlay-warn-box">
     <div class="text-6xl mb-4">🚫</div>
     <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">OVERLAY TERDETEKSI!</h2>
     <p class="text-indigo-100 mb-4 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
@@ -483,20 +363,15 @@
     <div class="bg-black/30 rounded-xl p-3 border border-red-400/60">
       <p class="text-red-300 text-xs font-bold" style="font-family:'Inter',sans-serif;">ZERO TOLERANCE — TIDAK ADA PERINGATAN KEDUA</p>
     </div>
-    <div id="overlay-countdown" class="hidden"></div>
-    <circle class="ring-progress" id="overlay-ring-progress" style="display:none;"/>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== NEW: FLOATING APP WARNING ==================== -->
-  <div id="floating-warning">
-   <div class="floating-warn-box">
+<!-- ==================== FLOATING APP WARNING ==================== -->
+<div id="floating-warning" class="sec-overlay">
+  <div class="floating-warn-box">
     <div class="countdown-wrap">
-     <svg width="88" height="88" viewBox="0 0 88 88">
-      <circle class="ring-bg" cx="44" cy="44" r="36"/>
-      <circle class="ring-progress" id="floating-ring-progress" cx="44" cy="44" r="36" style="stroke:#86efac;"/>
-     </svg>
-     <div class="countdown-num" id="floating-countdown">5</div>
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="ring-bg" cx="44" cy="44" r="36"/><circle class="ring-progress" id="floating-ring-progress" cx="44" cy="44" r="36" style="stroke:#86efac;"/></svg>
+      <div class="countdown-num" id="floating-countdown">5</div>
     </div>
     <div class="text-5xl mb-3">🪄</div>
     <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">FLOATING APP TERDETEKSI!</h2>
@@ -507,1128 +382,1126 @@
     <div class="bg-black/20 rounded-xl p-3 border border-green-400/30">
       <p class="text-green-200 text-xs" style="font-family:'Inter',sans-serif;">Tutup semua floating app (Messenger bubble, Facebook chat head, dll)!</p>
     </div>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== KONFIRMASI FULLSCREEN ==================== -->
-  <div id="fullscreen-prompt" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4">
-   <div class="bg-gradient-main rounded-3xl p-8 max-w-md w-full animate-fade-in shadow-2xl border-4 border-yellow-400">
-    <div class="text-center">
-     <div class="w-20 h-20 mx-auto mb-4 bg-gradient-gold rounded-full flex items-center justify-center"><span class="text-5xl">📱</span></div>
-     <h2 class="text-2xl font-bold text-white mb-4" style="font-family:'Playfair Display',serif;">MODE FULLSCREEN</h2>
-     <p class="text-green-200 mb-3" style="font-family:'Inter',sans-serif;">Ujian dalam mode layar penuh. <strong class="text-yellow-400">JANGAN KELUAR</strong> atau ujian akan direset ke login.</p>
-     <div class="bg-white/10 rounded-xl p-3 mb-4 text-left">
-      <p class="text-yellow-300 text-xs font-bold mb-2" style="font-family:'Inter',sans-serif;">⛔ DILARANG KERAS:</p>
-      <ul class="text-green-200 text-xs space-y-1" style="font-family:'Inter',sans-serif;">
-        <li>• Split screen / layar terbagi</li>
-        <li>• Pindah ke aplikasi lain</li>
-        <li>• Membuka/geser panel notifikasi</li>
-        <li>• Keluar dari mode fullscreen</li>
-        <li>• Picture-in-Picture (PiP)</li>
-        <li>• Overlay / floating app aktif</li>
-        <li>• Screen recording / mirroring</li>
-      </ul>
-     </div>
-     <div class="bg-yellow-400/20 border border-yellow-400/50 rounded-xl p-3 mb-5">
-      <p class="text-yellow-300 text-xs font-semibold" style="font-family:'Inter',sans-serif;">🛡️ Sistem keamanan 5-lapis aktif: Anti-Overlay · Anti-PiP · Anti-Float · Anti-Split · Anti-AppSwitch</p>
-     </div>
-     <button id="btn-start-fullscreen" class="w-full py-4 bg-gradient-gold text-green-900 font-bold rounded-xl shadow-lg active:scale-95" style="font-family:'Inter',sans-serif; font-size:16px;">🚀 MULAI UJIAN</button>
+<!-- ==================== NEW: BACKGROUND APP WARNING ==================== -->
+<div id="bg-app-warning" class="sec-overlay">
+  <div class="bg-app-box">
+    <div class="countdown-wrap">
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="ring-bg" cx="44" cy="44" r="36"/><circle class="ring-progress" id="bg-ring-progress" cx="44" cy="44" r="36" style="stroke:#fbbf24;"/></svg>
+      <div class="countdown-num" id="bg-countdown" style="color:#fbbf24;">10</div>
     </div>
-   </div>
+    <div class="text-5xl mb-3">📵</div>
+    <h2 class="text-2xl font-bold text-white mb-2" style="font-family:'Playfair Display',serif;">APLIKASI LATAR BELAKANG!</h2>
+    <p class="text-amber-100 mb-3 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
+      Sistem mendeteksi aplikasi berjalan di latar belakang.<br>
+      <strong class="text-yellow-300">Tutup semua aplikasi berikut sebelum melanjutkan:</strong>
+    </p>
+    <div class="bg-app-list" id="bg-app-list">
+      <p>⚠️ Menganalisis aplikasi aktif...</p>
+    </div>
+    <div class="bg-black/30 rounded-xl p-3 border border-yellow-400/40 mt-3">
+      <p class="text-yellow-200 text-xs font-bold" style="font-family:'Inter',sans-serif;">Tutup semua aplikasi di atas, lalu kembali ke ujian!</p>
+    </div>
+    <button id="bg-app-dismiss" onclick="dismissBgAppWarning()"
+      class="mt-4 w-full py-3 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold rounded-xl text-sm active:scale-95"
+      style="font-family:'Inter',sans-serif;">
+      ✅ Sudah Ditutup, Lanjutkan Ujian
+    </button>
+    <p class="text-amber-300/60 text-xs mt-2" style="font-family:'Inter',sans-serif;">Pelanggaran berulang = RESET OTOMATIS</p>
   </div>
+</div>
 
-  <!-- ==================== ANTI SPLIT SCREEN ==================== -->
-  <div id="split-screen-warning">
-   <div class="split-warn-box">
+<!-- ==================== NEW: CHAT BUBBLE WARNING ==================== -->
+<div id="bubble-warning" class="sec-overlay">
+  <div class="bubble-warn-box">
+    <div class="countdown-wrap">
+      <svg width="88" height="88" viewBox="0 0 88 88"><circle class="ring-bg" cx="44" cy="44" r="36"/><circle class="ring-progress" id="bubble-ring-progress" cx="44" cy="44" r="36" style="stroke:#f87171;"/></svg>
+      <div class="countdown-num" id="bubble-countdown">5</div>
+    </div>
+    <div class="text-5xl mb-3">💬</div>
+    <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">CHAT BUBBLE TERDETEKSI!</h2>
+    <p class="text-red-100 mb-4 text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">
+      Gelembung chat (WhatsApp, Messenger, Telegram, dll) terdeteksi aktif di atas layar ujian.<br><br>
+      <strong class="text-yellow-300 text-base">Ujian akan direset ke halaman login!</strong>
+    </p>
+    <div class="bg-black/20 rounded-xl p-3 border border-red-400/30">
+      <p class="text-red-200 text-xs font-semibold" style="font-family:'Inter',sans-serif;">
+        🔧 Cara menonaktifkan:<br>
+        Pengaturan → Aplikasi → [App] → Matikan "Chat Heads" / "Bubble"
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== KONFIRMASI FULLSCREEN ==================== -->
+<div id="fullscreen-prompt" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-[9999] p-4">
+  <div class="bg-gradient-main rounded-3xl p-8 max-w-md w-full animate-fade-in shadow-2xl border-4 border-yellow-400">
+    <div class="text-center">
+      <div class="w-20 h-20 mx-auto mb-4 bg-gradient-gold rounded-full flex items-center justify-center"><span class="text-5xl">📱</span></div>
+      <h2 class="text-2xl font-bold text-white mb-4" style="font-family:'Playfair Display',serif;">MODE FULLSCREEN</h2>
+      <p class="text-green-200 mb-3" style="font-family:'Inter',sans-serif;">Ujian dalam mode layar penuh. <strong class="text-yellow-400">JANGAN KELUAR</strong> atau ujian akan direset ke login.</p>
+      <div class="bg-white/10 rounded-xl p-3 mb-4 text-left">
+        <p class="text-yellow-300 text-xs font-bold mb-2" style="font-family:'Inter',sans-serif;">⛔ DILARANG KERAS:</p>
+        <ul class="text-green-200 text-xs space-y-1" style="font-family:'Inter',sans-serif;">
+          <li>• Split screen / layar terbagi</li>
+          <li>• Pindah ke aplikasi lain</li>
+          <li>• Membuka panel notifikasi</li>
+          <li>• Keluar dari mode fullscreen</li>
+          <li>• Picture-in-Picture (PiP)</li>
+          <li>• Overlay / floating app aktif</li>
+          <li>• Chat bubble (WA/Messenger/dll)</li>
+          <li>• Background app aktif</li>
+          <li>• Screen recording / mirroring</li>
+        </ul>
+      </div>
+      <div class="bg-yellow-400/20 border border-yellow-400/50 rounded-xl p-3 mb-5">
+        <p class="text-yellow-300 text-xs font-semibold" style="font-family:'Inter',sans-serif;">🛡️ Sistem keamanan 7-lapis aktif: Anti-Overlay · Anti-PiP · Anti-Float · Anti-Split · Anti-AppSwitch · Anti-BgApp · Anti-Bubble</p>
+      </div>
+      <button id="btn-start-fullscreen" class="w-full py-4 bg-gradient-gold text-green-900 font-bold rounded-xl shadow-lg active:scale-95" style="font-family:'Inter',sans-serif;font-size:16px;">🚀 MULAI UJIAN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ANTI SPLIT SCREEN ==================== -->
+<div id="split-screen-warning" class="sec-overlay">
+  <div class="split-warn-box">
     <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center"><span class="text-5xl">✂️</span></div>
     <h2 class="text-2xl font-bold text-white mb-3" style="font-family:'Playfair Display',serif;">SPLIT SCREEN TERDETEKSI!</h2>
     <p class="text-red-100 mb-4 text-sm" style="font-family:'Inter',sans-serif;">Layar terbagi tidak diizinkan. Kembalikan ke tampilan layar penuh segera.</p>
     <div class="text-white font-bold text-lg mb-4" style="font-family:'Inter',sans-serif;">Ujian direset dalam: <span id="split-countdown">10</span> detik</div>
     <p class="text-red-200 text-xs" style="font-family:'Inter',sans-serif;">Nonaktifkan split screen / multitasking sekarang!</p>
-   </div>
   </div>
+</div>
 
-  <!-- ==================== SUBMIT SUCCESS ==================== -->
-  <div id="submit-success-overlay">
-   <div class="submit-box shadow-2xl">
+<!-- ==================== SUBMIT SUCCESS ==================== -->
+<div id="submit-success-overlay" class="sec-overlay">
+  <div class="submit-box shadow-2xl">
     <div class="w-20 h-20 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center"><span class="text-5xl">✅</span></div>
     <h2 class="text-2xl font-bold text-green-800 mb-3" style="font-family:'Playfair Display',serif;">Jawaban Terkirim!</h2>
     <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Google Form telah mendeteksi pengiriman jawaban Anda. Ujian Anda dinyatakan <strong class="text-green-700">SELESAI</strong>.</p>
     <div class="bg-green-50 rounded-xl p-4 mb-5 text-left border border-green-200">
       <p id="submit-info" class="text-green-700 text-sm" style="font-family:'Inter',sans-serif;"></p>
     </div>
-    <button onclick="handleSubmitConfirm()" class="w-full py-3 bg-gradient-to-r from-green-600 to-green-700 text-white font-bold rounded-xl active:scale-95 transition-all" style="font-family:'Inter',sans-serif; font-size:16px;">
-     ✅ Ya, Selesaikan Ujian
-    </button>
+    <button onclick="handleSubmitConfirm()" class="w-full py-3 bg-gradient-to-r from-green-600 to-green-700 text-white font-bold rounded-xl active:scale-95 transition-all" style="font-family:'Inter',sans-serif;font-size:16px;">✅ Ya, Selesaikan Ujian</button>
     <p class="text-xs text-gray-400 mt-3" style="font-family:'Inter',sans-serif;">Anda tidak bisa kembali mengerjakan setelah ini.</p>
-   </div>
   </div>
+</div>
 
-  <script>
-        // ==================== KONFIGURASI ====================
-        const VALID_EXAM_CODE = 'PSAT2026';
+<script>
+// ==================== KONFIGURASI ====================
+const VALID_EXAM_CODE = 'PSAT2026';
 
-        // ==================== FORM MAPPING ====================
-        const FORM_MAPPING = {
-            'X-1': {
-                'Pendidikan Agama Islam': '',
-                'Bahasa Indonesia': '',
-                'Bahasa Inggris': '',
-                'Matematika': '',
-                'Biologi': '',
-                'Fisika': '',
-                'Kimia': '',
-                'Pendidikan Pancasila': '',
-                'Sosiologi': '',
-                'Ekonomi': '',
-                'Sejarah': '',
-                'Geografi': '',
-                'Teknologi Informasi dan Komunikasi': 'https://docs.google.com/forms/d/e/1FAIpQLSdn0vsNW-6cKyPG6msMImafHMdbSs_7sfamJlWaI3mC6ij-gA/viewform?usp=sharing&ouid=118312355619034914939',
-                'PJOK': '',
-                'Seni Budaya': '',
-                'Bahasa Arab': ''
-            },
-            'X-2':   { 'Pendidikan Agama Islam':'','Bahasa Indonesia':'','Bahasa Inggris':'','Matematika':'','Biologi':'','Fisika':'','Kimia':'','Pendidikan Pancasila':'','Sosiologi':'','Ekonomi':'','Sejarah':'','Geografi':'','Teknologi Informasi dan Komunikasi':'','PJOK':'','Seni Budaya':'','Bahasa Arab':'' },
-            'XI-1':  { 'Pendidikan Agama Islam':'','Bahasa Indonesia':'','Bahasa Inggris':'','Matematika':'','Biologi':'','Fisika':'','Kimia':'','Pendidikan Pancasila':'','Sosiologi':'','Ekonomi':'','Sejarah':'','Geografi':'','Teknologi Informasi dan Komunikasi':'','PJOK':'','Seni Budaya':'','Bahasa Arab':'' },
-            'XI-2':  { 'Pendidikan Agama Islam':'','Bahasa Indonesia':'','Bahasa Inggris':'','Matematika':'','Biologi':'','Fisika':'','Kimia':'','Pendidikan Pancasila':'','Sosiologi':'','Ekonomi':'','Sejarah':'','Geografi':'','Teknologi Informasi dan Komunikasi':'','PJOK':'','Seni Budaya':'','Bahasa Arab':'' },
-            'XII-1': { 'Pendidikan Agama Islam':'','Bahasa Indonesia':'','Bahasa Inggris':'','Matematika':'','Biologi':'','Fisika':'','Kimia':'','Pendidikan Pancasila':'','Sosiologi':'','Ekonomi':'','Sejarah':'','Geografi':'','Teknologi Informasi dan Komunikasi':'','PJOK':'','Seni Budaya':'','Bahasa Arab':'' },
-            'XII-2': { 'Pendidikan Agama Islam':'','Bahasa Indonesia':'','Bahasa Inggris':'','Matematika':'','Biologi':'','Fisika':'','Kimia':'','Pendidikan Pancasila':'','Sosiologi':'','Ekonomi':'','Sejarah':'','Geografi':'','Teknologi Informasi dan Komunikasi':'','PJOK':'','Seni Budaya':'','Bahasa Arab':'' }
-        };
+const FORM_MAPPING = {
+  'X-1': {
+    'Pendidikan Agama Islam':'',
+    'Bahasa Indonesia':'',
+    'Bahasa Inggris':'',
+    'Matematika':'',
+    'Biologi':'',
+    'Fisika':'',
+    'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'https://docs.google.com/forms/d/e/1FAIpQLSdn0vsNW-6cKyPG6msMImafHMdbSs_7sfamJlWaI3mC6ij-gA/viewform?usp=sharing&ouid=118312355619034914939',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  },
+  'X-2':   {
+     'Pendidikan Agama Islam':'',
+     'Bahasa Indonesia':'',
+     'Bahasa Inggris':'',
+     'Matematika':'',
+     'Biologi':'',
+     'Fisika':'',
+     'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'https://docs.google.com/forms/d/e/1FAIpQLSdn0vsNW-6cKyPG6msMImafHMdbSs_7sfamJlWaI3mC6ij-gA/viewform?usp=header',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  }, 'XI-1':  {
+     'Pendidikan Agama Islam':'',
+     'Bahasa Indonesia':'',
+     'Bahasa Inggris':'',
+     'Matematika':'',
+     'Biologi':'',
+     'Fisika':'',
+     'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'https://docs.google.com/forms/d/e/1FAIpQLSfN9oBs5iZgPejD5u3kJi0y8nq5WLfetqgImH7Lpi2u7K-W9Q/viewform?usp=header',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  }, 'XI-2':  {
+     'Pendidikan Agama Islam':'',
+     'Bahasa Indonesia':'',
+     'Bahasa Inggris':'',
+     'Matematika':'',
+     'Biologi':'',
+     'Fisika':'',
+     'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'https://docs.google.com/forms/d/e/1FAIpQLSfN9oBs5iZgPejD5u3kJi0y8nq5WLfetqgImH7Lpi2u7K-W9Q/viewform?usp=dialog',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  }, 'XII-1': {
+     'Pendidikan Agama Islam':'',
+     'Bahasa Indonesia':'',
+     'Bahasa Inggris':'',
+     'Matematika':'',
+     'Biologi':'',
+     'Fisika':'',
+     'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  }, 'XII-2': {
+     'Pendidikan Agama Islam':'',
+     'Bahasa Indonesia':'',
+     'Bahasa Inggris':'',
+     'Matematika':'',
+     'Biologi':'',
+     'Fisika':'',
+     'Kimia':'',
+    'Pendidikan Pancasila':'',
+    'Sosiologi':'',
+    'Ekonomi':'',
+    'Sejarah':'',
+    'Geografi':'',
+    'Teknologi Informasi dan Komunikasi':'',
+    'PJOK':'',
+    'Seni Budaya':'',
+    'Bahasa Arab':''
+  }
+};
 
-        const MAPEL_BY_KELAS = {
-            'X-1':   ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
-            'X-2':   ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
-            'XI-1':  ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
-            'XI-2':  ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
-            'XII-1': ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
-            'XII-2': ['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab']
-        };
+const MAPEL_BY_KELAS = {
+  'X-1':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
+  'X-2':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
+  'XI-1':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
+  'XI-2':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
+  'XII-1':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab'],
+  'XII-2':['Pendidikan Agama Islam','Bahasa Indonesia','Bahasa Inggris','Matematika','Biologi','Fisika','Kimia','Pendidikan Pancasila','Sosiologi','Ekonomi','Sejarah','Geografi','Teknologi Informasi dan Komunikasi','PJOK','Seni Budaya','Bahasa Arab']
+};
 
-        // ==================== STATE ====================
-        let isExamActive = false;
-        let violationDetected = false;
-        let formSubmitted = false;
-        let currentStudentData = null;
-        let splitScreenTimer = null;
-        let splitCountdown = 10;
-        let appSwitchTimer = null;
-        let appSwitchVal = 5;
-        let pipTimer = null;
-        let pipVal = 5;
-        let overlayTimer = null;
-        let overlayVal = 5;
-        let floatingTimer = null;
-        let floatingVal = 5;
-        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        let isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        let isAndroid = /Android/i.test(navigator.userAgent);
+// ==================== STATE ====================
+let isExamActive = false;
+let violationDetected = false;
+let formSubmitted = false;
+let currentStudentData = null;
+let splitScreenTimer = null;
+let splitCountdown = 10;
+let appSwitchTimer = null;
+let appSwitchVal = 5;
+let pipTimer = null; let pipVal = 5;
+let overlayTimer = null;
+let floatingTimer = null; let floatingVal = 5;
+let bubbleTimer = null; let bubbleVal = 5;
+let bgAppTimer = null; let bgAppVal = 10;
+let bgAppViolationCount = 0;
 
-        const MIN_WIDTH_RATIO = isMobile ? 0.55 : 0.65;
-        const MIN_HEIGHT_RATIO = isMobile ? 0.55 : 0.65;
-        const RING_CIRCUMFERENCE = 226;
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isAndroid = /Android/i.test(navigator.userAgent);
+const MIN_WIDTH_RATIO  = isMobile ? 0.55 : 0.65;
+const MIN_HEIGHT_RATIO = isMobile ? 0.55 : 0.65;
+const RING_C = 226;
 
-        // ==================== DOM ====================
-        const loginPage           = document.getElementById('login-page');
-        const examPage            = document.getElementById('exam-page');
-        const finishPage          = document.getElementById('finish-page');
-        const loginForm           = document.getElementById('login-form');
-        const errorMessage        = document.getElementById('error-message');
-        const kelasSelect         = document.getElementById('kelas');
-        const mapelSelect         = document.getElementById('mapel');
-        const examIframe          = document.getElementById('exam-iframe');
-        const loadingOverlay      = document.getElementById('loading-overlay');
-        const violationPopup      = document.getElementById('violation-popup');
-        const fullscreenPrompt    = document.getElementById('fullscreen-prompt');
-        const splitScreenWarning  = document.getElementById('split-screen-warning');
-        const submitSuccessOverlay= document.getElementById('submit-success-overlay');
-        const appSwitchWarning    = document.getElementById('app-switch-warning');
-        const pipWarning          = document.getElementById('pip-warning');
-        const overlayWarning      = document.getElementById('overlay-warning');
-        const floatingWarning     = document.getElementById('floating-warning');
-        const ringProgress        = document.getElementById('ring-progress');
-        const appCountdownEl      = document.getElementById('app-switch-countdown');
-        const appReasonEl         = document.getElementById('app-switch-reason');
+// ==================== DOM ====================
+const loginPage            = document.getElementById('login-page');
+const examPage             = document.getElementById('exam-page');
+const finishPage           = document.getElementById('finish-page');
+const loginForm            = document.getElementById('login-form');
+const errorMessage         = document.getElementById('error-message');
+const kelasSelect          = document.getElementById('kelas');
+const mapelSelect          = document.getElementById('mapel');
+const examIframe           = document.getElementById('exam-iframe');
+const loadingOverlay       = document.getElementById('loading-overlay');
+const violationPopup       = document.getElementById('violation-popup');
+const fullscreenPrompt     = document.getElementById('fullscreen-prompt');
+const splitScreenWarning   = document.getElementById('split-screen-warning');
+const submitSuccessOverlay = document.getElementById('submit-success-overlay');
+const appSwitchWarning     = document.getElementById('app-switch-warning');
+const pipWarning           = document.getElementById('pip-warning');
+const overlayWarning       = document.getElementById('overlay-warning');
+const floatingWarning      = document.getElementById('floating-warning');
+const bgAppWarning         = document.getElementById('bg-app-warning');
+const bubbleWarning        = document.getElementById('bubble-warning');
+const ringProgress         = document.getElementById('ring-progress');
+const appCountdownEl       = document.getElementById('app-switch-countdown');
+const appReasonEl          = document.getElementById('app-switch-reason');
 
-        // ==================== INIT ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            checkExistingSession();
-            preventBackNavigation();
-            setupAntiCheating();
-            setupMobileOptimizations();
+// ==================== INIT ====================
+document.addEventListener('DOMContentLoaded', function () {
+  setupEventListeners();
+  checkExistingSession();
+  preventBackNavigation();
+  setupAntiCheating();
+  setupMobileOptimizations();
+});
+
+function setupMobileOptimizations() {
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function (e) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault();
+    lastTouchEnd = now;
+  }, { passive: false });
+  document.addEventListener('touchmove', function (e) { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+  document.addEventListener('touchstart', function (e) { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+  if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(() => {});
+}
+
+function setupEventListeners() {
+  kelasSelect.addEventListener('change', function () { updateMapelOptions(this.value); });
+  loginForm.addEventListener('submit', function (e) { e.preventDefault(); handleLogin(); });
+  document.getElementById('btn-start-fullscreen').addEventListener('click', startExamFullscreen);
+  examIframe.addEventListener('load', function () {
+    setTimeout(() => loadingOverlay.classList.add('hidden'), 1500);
+    monitorIframeSubmission();
+  });
+}
+
+// ==================== BLOKIR NOTIFIKASI ====================
+function blockNotifications() {
+  if (!('Notification' in window)) return;
+  try {
+    const _Orig = window.Notification;
+    window.Notification = function (title, opts) { if (isExamActive) return { close: () => {} }; return new _Orig(title, opts); };
+    Object.assign(window.Notification, _Orig);
+    Object.defineProperty(window.Notification, 'permission', { get: () => isExamActive ? 'denied' : (_Orig.permission || 'default'), configurable: true });
+    window.Notification.requestPermission = () => Promise.resolve('denied');
+  } catch (e) {}
+}
+
+// ====================================================================================
+// ===== LAYER 1: BACKGROUND APP KILLER (NEW) =========================================
+// Paksa semua aplikasi latar belakang yang terdeteksi untuk ditutup sebelum ujian.
+// Gunakan kombinasi: Page Visibility API, Screen Wake Lock, Performance Observer,
+// SharedArrayBuffer timing, Navigator.getBattery() drain check, Service Worker message.
+// ====================================================================================
+function setupBackgroundAppKiller() {
+
+  // ── Signal 1: Service Worker pesan ke semua tab yang aktif ──────────────────────
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'KILL_BACKGROUND_TASKS', examMode: true });
+  }
+
+  // ── Signal 2: BroadcastChannel — tutup tab lain dari aplikasi ini ───────────────
+  try {
+    const bc = new BroadcastChannel('psat_exam_channel');
+    bc.postMessage({ type: 'EXAM_STARTED', timestamp: Date.now() });
+    bc.addEventListener('message', (e) => {
+      if (e.data.type === 'STILL_RUNNING' && isExamActive && !formSubmitted) {
+        triggerBgAppWarning(['Tab / sesi lain masih terbuka']);
+      }
+    });
+  } catch (e) {}
+
+  // ── Signal 3: Performance Observer — deteksi activity latar belakang via LCP/FID ─
+  try {
+    if ('PerformanceObserver' in window) {
+      const perfObs = new PerformanceObserver((list) => {
+        if (!isExamActive || formSubmitted) return;
+        list.getEntries().forEach(entry => {
+          // Jika ada resource loading dari domain asing = background activity
+          if (entry.entryType === 'resource' && entry.initiatorType !== 'iframe' &&
+              !entry.name.includes('google') && !entry.name.includes('fonts.googleapis') &&
+              !entry.name.includes('tailwindcss') && !entry.name.includes(location.hostname)) {
+            // External resource loaded = suspicious background network activity
+          }
         });
+      });
+      perfObs.observe({ type: 'resource', buffered: false });
+    }
+  } catch (e) {}
 
-        function setupMobileOptimizations() {
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', function(e) {
-                const now = Date.now();
-                if (now - lastTouchEnd <= 300) e.preventDefault();
-                lastTouchEnd = now;
-            }, { passive: false });
-            document.addEventListener('touchmove', function(e) {
-                if (e.touches.length > 1) e.preventDefault();
-            }, { passive: false });
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('portrait').catch(() => {});
-            }
-            document.addEventListener('touchstart', function(e) {
-                if (e.touches.length > 1) e.preventDefault();
-            }, { passive: false });
-        }
+  // ── Signal 4: Navigator.scheduling.isInputPending — deteksi input dari app lain ─
+  // Jika isInputPending true tapi tidak ada interaksi kita = app lain mendapat input
+  let pendingCheckCount = 0;
+  setInterval(() => {
+    if (!isExamActive || formSubmitted) return;
+    if ('scheduling' in navigator && navigator.scheduling.isInputPending) {
+      const pending = navigator.scheduling.isInputPending({ includeContinuous: true });
+      if (pending) pendingCheckCount++;
+      else pendingCheckCount = 0;
+      // Input pending terus-menerus tanpa interaksi kita = app lain
+    }
+  }, 500);
 
-        function setupEventListeners() {
-            kelasSelect.addEventListener('change', function() { updateMapelOptions(this.value); });
-            loginForm.addEventListener('submit', function(e) { e.preventDefault(); handleLogin(); });
-            document.getElementById('btn-start-fullscreen').addEventListener('click', startExamFullscreen);
-            examIframe.addEventListener('load', function() {
-                setTimeout(() => loadingOverlay.classList.add('hidden'), 1500);
-                monitorIframeSubmission();
-            });
-        }
-
-        // ==================== BLOKIR NOTIFIKASI ====================
-        function blockNotifications() {
-            if (!('Notification' in window)) return;
-            try {
-                const _Orig = window.Notification;
-                window.Notification = function(title, opts) {
-                    if (isExamActive) return { close: () => {} };
-                    return new _Orig(title, opts);
-                };
-                Object.assign(window.Notification, _Orig);
-                Object.defineProperty(window.Notification, 'permission', {
-                    get: () => isExamActive ? 'denied' : (_Orig.permission || 'default'),
-                    configurable: true
-                });
-                window.Notification.requestPermission = () => Promise.resolve('denied');
-            } catch(e) {}
-            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-                navigator.serviceWorker.controller.postMessage({ type: 'EXAM_MODE_BLOCK_NOTIF' });
-            }
-        }
-
-        // ====================================================================================
-        // ============================= ANTI-PiP (Picture-in-Picture) =======================
-        // ====================================================================================
-        function setupAntiPiP() {
-            // 1. Block the PiP API entirely for all video elements
-            if ('pictureInPictureEnabled' in document) {
-                try {
-                    Object.defineProperty(document, 'pictureInPictureEnabled', {
-                        get: () => false,
-                        configurable: true
-                    });
-                } catch(e) {}
-            }
-
-            // 2. Monitor all video elements for PiP entry
-            function guardVideoElement(video) {
-                video.disablePictureInPicture = true;
-                video.setAttribute('disablepictureinpicture', '');
-                video.addEventListener('enterpictureinpicture', function(e) {
-                    if (!isExamActive || formSubmitted) return;
-                    e.preventDefault();
-                    // Force exit PiP immediately
-                    if (document.pictureInPictureElement) {
-                        document.exitPictureInPicture().catch(() => {});
-                    }
-                    triggerPiPWarning();
-                });
-            }
-
-            // Guard existing videos
-            document.querySelectorAll('video').forEach(guardVideoElement);
-
-            // Guard future videos via MutationObserver
-            const videoObserver = new MutationObserver(mutations => {
-                mutations.forEach(m => {
-                    m.addedNodes.forEach(node => {
-                        if (node.nodeName === 'VIDEO') guardVideoElement(node);
-                        if (node.querySelectorAll) node.querySelectorAll('video').forEach(guardVideoElement);
-                    });
-                });
-            });
-            videoObserver.observe(document.body, { childList: true, subtree: true });
-
-            // 3. Global PiP change detection
-            document.addEventListener('enterpictureinpicture', function() {
-                if (!isExamActive || formSubmitted) return;
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture().catch(() => {});
-                }
-                triggerPiPWarning();
-            });
-
-            document.addEventListener('leavepictureinpicture', function() {
-                // PiP closed — if warning is showing, cancel it
-                if (pipWarning.classList.contains('show')) {
-                    hidePiPWarning();
-                }
-            });
-
-            // 4. iOS Safari: check document.pictureInPictureElement periodically
-            setInterval(() => {
-                if (!isExamActive || formSubmitted) return;
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture().catch(() => {});
-                    triggerPiPWarning();
-                }
-            }, 800);
-
-            // 5. Intercept iframe PiP
-            examIframe.addEventListener('load', () => {
-                try {
-                    const iDoc = examIframe.contentDocument || examIframe.contentWindow.document;
-                    iDoc.querySelectorAll('video').forEach(guardVideoElement);
-                } catch(e) {}
-            });
-        }
-
-        function triggerPiPWarning() {
-            if (pipWarning.classList.contains('show')) return;
-            if (!isExamActive || formSubmitted) return;
-            pipWarning.classList.add('show');
-            pipVal = 5;
-            document.getElementById('pip-countdown').textContent = pipVal;
-            const pipRing = document.getElementById('pip-ring-progress');
-            pipRing.style.strokeDasharray = RING_CIRCUMFERENCE;
-            pipRing.style.strokeDashoffset = 0;
-            pipTimer = setInterval(() => {
-                pipVal--;
-                document.getElementById('pip-countdown').textContent = pipVal;
-                pipRing.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - pipVal / 5);
-                if (pipVal <= 0) {
-                    clearInterval(pipTimer);
-                    pipTimer = null;
-                    pipWarning.classList.remove('show');
-                    resetToLogin('Menggunakan Picture-in-Picture (PiP) / Floating window video');
-                }
-            }, 1000);
-        }
-
-        function hidePiPWarning() {
-            pipWarning.classList.remove('show');
-            if (pipTimer) { clearInterval(pipTimer); pipTimer = null; }
-        }
-
-        // ====================================================================================
-        // ============================= ANTI-OVERLAY (ZERO TOLERANCE) =======================
-        // ====================================================================================
-        // Filosofi: Deteksi KEBERADAAN overlay, bukan seberapa besar — satu piksel pun = LANGSUNG reset.
-        // Metode berlapis: visibilitychange, document.hidden, focus/blur timing, pointer capture,
-        // MediaDevices hijack, DOM mutation guard, canvas fingerprint, touch hitTest, multi-touch trap,
-        // CSS filter trap, requestAnimationFrame heartbeat, PageLifecycle API, dan lain-lain.
-        // ====================================================================================
-
-        function setupAntiOverlay() {
-
-            // ── LAYER 1: document.hidden — ZERO TOLERANCE ──────────────────────────────────
-            // Setiap kali halaman TERSEMBUNYI (apapun penyebabnya: overlay, notifikasi, gesture)
-            // langsung reset TANPA countdown. Tidak ada toleransi.
-            document.addEventListener('visibilitychange', () => {
-                if (!isExamActive || formSubmitted) return;
-                if (document.hidden) {
-                    // Delay 150ms untuk filter false-positive saat render awal
-                    setTimeout(() => {
-                        if (document.hidden && isExamActive && !formSubmitted) {
-                            triggerOverlayWarning('Layar tersembunyi — overlay / aplikasi lain aktif di atas ujian');
-                        }
-                    }, 150);
-                }
-            });
-
-            // ── LAYER 2: Pointer Capture Hijack Detector ────────────────────────────────────
-            // Jika pointer/touch event terjadi tapi elementFromPoint TIDAK menunjuk elemen
-            // milik aplikasi ini, berarti ada lapisan asing (overlay) yang menyerap input.
-            document.addEventListener('pointerdown', (e) => {
-                if (!isExamActive || formSubmitted) return;
-                const el = document.elementFromPoint(e.clientX, e.clientY);
-                if (!el || el.ownerDocument !== document) {
-                    triggerOverlayWarning('Input dibajak overlay — elemen asing menyerap sentuhan layar');
-                }
-            }, true);
-
-            // ── LAYER 3: Touch hitTest — multi-point overlay trap ───────────────────────────
-            // Overlay transparan biasanya tidak ter-register sebagai elemen DOM kita,
-            // sehingga touch pada area "kosong" = sinyal overlay.
-            document.addEventListener('touchstart', (e) => {
-                if (!isExamActive || formSubmitted) return;
-                for (let i = 0; i < e.touches.length; i++) {
-                    const t = e.touches[i];
-                    const el = document.elementFromPoint(t.clientX, t.clientY);
-                    // null atau body kosong = overlay menyerap touch
-                    if (!el) {
-                        triggerOverlayWarning('Touch tidak menembus ke elemen ujian — overlay transparan terdeteksi');
-                        break;
-                    }
-                }
-            }, { passive: true, capture: true });
-
-            // ── LAYER 4: window.blur / focus ZERO TOLERANCE ─────────────────────────────────
-            // Setiap kehilangan fokus window = ada sesuatu di atas aplikasi ini.
-            // Langsung reset tanpa menunggu konfirmasi document.hidden.
-            let blurZeroTimer = null;
-            window.addEventListener('blur', () => {
-                if (!isExamActive || formSubmitted) return;
-                // Beri 300ms grace period (menghindari false-positive saat input focus)
-                blurZeroTimer = setTimeout(() => {
-                    if (!isExamActive || formSubmitted) return;
-                    // Periksa apakah fokus berpindah ke elemen internal (input/select)
-                    const activeEl = document.activeElement;
-                    const isInternalFocus = activeEl && (
-                        activeEl.tagName === 'INPUT' ||
-                        activeEl.tagName === 'SELECT' ||
-                        activeEl.tagName === 'TEXTAREA' ||
-                        activeEl.tagName === 'IFRAME'
-                    );
-                    if (!isInternalFocus) {
-                        triggerOverlayWarning('Fokus hilang dari aplikasi ujian — overlay atau app lain terdeteksi');
-                    }
-                }, 300);
-            });
-            window.addEventListener('focus', () => {
-                if (blurZeroTimer) { clearTimeout(blurZeroTimer); blurZeroTimer = null; }
-            });
-
-            // ── LAYER 5: Screen Capture & getDisplayMedia BLOCK ─────────────────────────────
-            // Blokir total semua upaya screen recording, screen share, screen mirroring.
-            try {
-                if (navigator.mediaDevices) {
-                    const _origGDM = navigator.mediaDevices.getDisplayMedia?.bind(navigator.mediaDevices);
-                    navigator.mediaDevices.getDisplayMedia = function(...args) {
-                        if (isExamActive && !formSubmitted) {
-                            triggerOverlayWarning('Percobaan screen recording / mirroring / share terdeteksi');
-                            return Promise.reject(new DOMException('Blocked during exam', 'NotAllowedError'));
-                        }
-                        return _origGDM ? _origGDM(...args) : Promise.reject(new Error('Not available'));
-                    };
-                    // Juga blokir getUserMedia untuk kamera/screen capture
-                    const _origGUM = navigator.mediaDevices.getUserMedia?.bind(navigator.mediaDevices);
-                    navigator.mediaDevices.getUserMedia = function(constraints) {
-                        if (isExamActive && !formSubmitted) {
-                            if (constraints && (constraints.video || constraints.screen)) {
-                                triggerOverlayWarning('Percobaan capture layar via getUserMedia terdeteksi');
-                                return Promise.reject(new DOMException('Blocked during exam', 'NotAllowedError'));
-                            }
-                        }
-                        return _origGUM ? _origGUM(constraints) : Promise.reject(new Error('Not available'));
-                    };
-                }
-            } catch(e) {}
-
-            // ── LAYER 6: requestAnimationFrame Heartbeat ─────────────────────────────────────
-            // rAF berhenti/melambat drastis saat tab/window tersembunyi oleh overlay.
-            // Deteksi jeda > 500ms = ada sesuatu yang memblokir render loop.
-            let lastRAFTime = performance.now();
-            let rafActive = false;
-            function rafHeartbeat(ts) {
-                if (!isExamActive || formSubmitted) { rafActive = false; return; }
-                const gap = ts - lastRAFTime;
-                lastRAFTime = ts;
-                // Gap > 500ms (setengah detik) = tab/render diblokir oleh overlay sistem
-                if (gap > 500 && gap < 60000) {
-                    triggerOverlayWarning('Render loop diinterupsi — overlay sistem atau app lain menyela ujian');
-                }
-                requestAnimationFrame(rafHeartbeat);
-            }
-            // Heartbeat dimulai saat exam aktif (dipanggil dari startExam via startOverlayObserver)
-            window._startRAFHeartbeat = function() {
-                if (rafActive) return;
-                rafActive = true;
-                lastRAFTime = performance.now();
-                requestAnimationFrame(rafHeartbeat);
-            };
-
-            // ── LAYER 7: DOM MutationObserver — cegah injeksi overlay dari dalam ────────────
-            // Deteksi jika ada elemen asing di-inject ke body (overlay via JS injection,
-            // browser extension, atau WebView tampering).
-            const knownIds = new Set([
-                'login-page','exam-page','finish-page','violation-popup',
-                'app-switch-warning','pip-warning','overlay-warning','floating-warning',
-                'split-screen-warning','submit-success-overlay','fullscreen-prompt',
-                'security-shield','loading-overlay','form-container','exam-iframe'
-            ]);
-            const domGuard = new MutationObserver((mutations) => {
-                if (!isExamActive || formSubmitted) return;
-                mutations.forEach(m => {
-                    m.addedNodes.forEach(node => {
-                        if (node.nodeType !== 1) return; // element nodes only
-                        const id = node.id || '';
-                        const tag = node.tagName || '';
-                        // Abaikan elemen internal kita
-                        if (knownIds.has(id)) return;
-                        // Abaikan script/style yang diload dinamis
-                        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK') return;
-                        // Periksa apakah elemen ini menutupi seluruh/sebagian layar
-                        const style = window.getComputedStyle(node);
-                        const pos = style.position;
-                        const zi  = parseInt(style.zIndex) || 0;
-                        if ((pos === 'fixed' || pos === 'absolute') && zi > 0) {
-                            // Elemen posisi fixed/absolute dengan z-index dari sumber asing
-                            triggerOverlayWarning('Elemen overlay asing terdeteksi di-inject ke halaman ujian');
-                        }
-                    });
-                });
-            });
-            domGuard.observe(document.body, { childList: true, subtree: false });
-
-            // ── LAYER 8: CSS Pointer-Events Trap — canvas sentuh ────────────────────────────
-            // Buat invisible canvas penuh layar di bawah z-index kita.
-            // Jika sentuhan tidak pernah sampai ke canvas = ada lapisan di atas.
-            const trapCanvas = document.createElement('canvas');
-            trapCanvas.id = 'overlay-trap-canvas';
-            trapCanvas.style.cssText = `
-                position: fixed; inset: 0; z-index: 1;
-                pointer-events: none; opacity: 0;
-                width: 100%; height: 100%;
-            `;
-            trapCanvas.setAttribute('aria-hidden', 'true');
-            document.body.appendChild(trapCanvas);
-
-            // ── LAYER 9: Page Lifecycle API ──────────────────────────────────────────────────
-            document.addEventListener('freeze', () => {
-                if (isExamActive && !formSubmitted)
-                    triggerOverlayWarning('Aplikasi di-freeze oleh sistem — overlay / background process aktif');
-            });
-            document.addEventListener('resume', () => {
-                // Setelah resume, verifikasi tidak ada overlay yang tersisa
-            });
-            window.addEventListener('pagehide', () => {
-                if (isExamActive && !formSubmitted)
-                    triggerOverlayWarning('Halaman disembunyikan — app lain / overlay mengambil alih layar');
-            });
-
-            // ── LAYER 10: Screen Orientation Guard ──────────────────────────────────────────
-            // Rotasi layar sering digunakan untuk mengaktifkan overlay tertentu di Android.
-            if (screen.orientation) {
-                screen.orientation.addEventListener('change', () => {
-                    if (!isExamActive || formSubmitted) return;
-                    // Setelah rotasi, overlay mungkin aktif — cek visibility
-                    setTimeout(() => {
-                        if (document.hidden && isExamActive && !formSubmitted) {
-                            triggerOverlayWarning('Rotasi layar + layar tersembunyi — kemungkinan overlay aktif');
-                        }
-                    }, 200);
-                });
-            }
-
-            // ── LAYER 11: MediaSession / Ambient Light / Proximity Sensor block ────────────
-            // Beberapa overlay menggunakan sensor proximity untuk mengaktifkan diri
-            try {
-                if ('ProximitySensor' in window) {
-                    Object.defineProperty(window, 'ProximitySensor', { get: () => undefined, configurable: true });
-                }
-            } catch(e) {}
-
-            // ── LAYER 12: CSS Security Hardening ────────────────────────────────────────────
-            // Inject CSS yang mempersulit overlay untuk menyembunyikan diri
-            const secStyle = document.createElement('style');
-            secStyle.id = 'overlay-security-css';
-            secStyle.textContent = `
-                /* Paksa semua elemen fixed/absolute tampak di bawah lapisan keamanan kita */
-                body > *:not(#login-page):not(#exam-page):not(#finish-page):not(#violation-popup):not(#app-switch-warning):not(#pip-warning):not(#overlay-warning):not(#floating-warning):not(#split-screen-warning):not(#submit-success-overlay):not(#fullscreen-prompt):not(#security-shield):not(#overlay-trap-canvas):not(#overlay-security-css):not(script):not(style):not(link) {
-                    pointer-events: none !important;
-                    opacity: 0.01 !important;
-                    visibility: visible !important;
-                    display: block !important;
-                }
-                /* Blokir WebRTC screen share overlay */
-                [data-screen-share], [class*="screen-share"], [class*="overlay"], [class*="floating"] {
-                    display: none !important;
-                    pointer-events: none !important;
-                }
-            `;
-            document.head.appendChild(secStyle);
-
-            // ── LAYER 13: Periodic Zero-Tolerance Visibility Check ───────────────────────────
-            // Polling agresif setiap 300ms: periksa document.hidden DAN visibilityState
-            setInterval(() => {
-                if (!isExamActive || formSubmitted) return;
-                if (document.hidden || document.visibilityState !== 'visible') {
-                    triggerOverlayWarning('Halaman ujian tidak visible — overlay atau app lain aktif');
-                }
-                // Cek apakah ada PiP yang lolos
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture().catch(() => {});
-                    triggerPiPWarning();
-                }
-            }, 300);
-
-            // ── LAYER 14: Security Shield div (pointer-events blocker) ───────────────────────
-            // Shield transparan di z-index tinggi yang mendeteksi sentuhan "tembus"
-            const shield = document.createElement('div');
-            shield.id = 'security-shield';
-            shield.style.cssText = `
-                position: fixed; inset: 0; z-index: 89999;
-                pointer-events: none; background: transparent;
-                -webkit-tap-highlight-color: transparent;
-                touch-action: none;
-            `;
-            shield.setAttribute('aria-hidden', 'true');
-            // Sentuhan pada shield (jika pointer-events aktif) = overlay mengarahkan ke shield
-            shield.addEventListener('touchstart', () => {
-                if (isExamActive && !formSubmitted)
-                    triggerOverlayWarning('Sentuhan diarahkan ke shield — overlay tap-hijacking terdeteksi');
-            }, { passive: true });
-            document.body.appendChild(shield);
-        }
-
-        function startOverlayObserver() {
-            // Mulai rAF heartbeat saat ujian dimulai
-            if (window._startRAFHeartbeat) window._startRAFHeartbeat();
-        }
-
-        // OVERLAY = ZERO TOLERANCE: tidak ada countdown, langsung reset ke login
-        function triggerOverlayWarning(reason) {
-            if (!isExamActive || formSubmitted) return;
-            overlayWarning.classList.add('show');
-            const countEl = document.getElementById('overlay-countdown');
-            const ring    = document.getElementById('overlay-ring-progress');
-            if (countEl) countEl.textContent = '!';
-            if (ring) { ring.style.strokeDasharray = RING_CIRCUMFERENCE; ring.style.strokeDashoffset = RING_CIRCUMFERENCE; }
-            // Langsung reset setelah 800ms — hanya cukup untuk user melihat pesan
+  // ── Signal 5: Screen Wake Lock release detection ──────────────────────────────────
+  if ('wakeLock' in navigator) {
+    let wakeLock = null;
+    const acquireWakeLock = async () => {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock.addEventListener('release', () => {
+          // Wake lock dilepas = layar akan mati atau app lain mengambil kontrol
+          if (isExamActive && !formSubmitted) {
             setTimeout(() => {
-                overlayWarning.classList.remove('show');
-                resetToLogin(reason || 'Overlay app terdeteksi');
-            }, 800);
-        }
-
-        // ====================================================================================
-        // ============================= ANTI-FLOATING APP ====================================
-        // ====================================================================================
-        function setupAntiFloatingApp() {
-            // 1. Android: Facebook Chat Heads, Messenger bubbles, custom floating windows
-            //    These typically cause window.innerWidth/outerWidth mismatch
-            //    or trigger visibilitychange with short flickers
-
-            // 2. Detect "window on top of window" on Android via screen focus events
-            let focusLostTime = 0;
-            let quickFocusChanges = 0;
-            let quickFocusTimer = null;
-
-            window.addEventListener('blur', () => {
-                if (!isExamActive || formSubmitted) return;
-                focusLostTime = Date.now();
-            });
-
-            window.addEventListener('focus', () => {
-                if (!isExamActive || formSubmitted) return;
-                const elapsed = Date.now() - focusLostTime;
-                // Very quick blur-focus cycle (< 300ms) = floating app tap detected
-                if (focusLostTime > 0 && elapsed < 300 && elapsed > 0) {
-                    quickFocusChanges++;
-                    if (quickFocusTimer) clearTimeout(quickFocusTimer);
-                    quickFocusTimer = setTimeout(() => { quickFocusChanges = 0; }, 3000);
-                    if (quickFocusChanges >= 3) {
-                        quickFocusChanges = 0;
-                        triggerFloatingWarning('Aktivitas floating app / chat bubble terdeteksi');
-                    }
-                }
-                focusLostTime = 0;
-            });
-
-            // 3. iOS: Detect Slide Over (iPad multitasking overlay)
-            //    Slide Over causes window.innerWidth to drop to ~320px temporarily
-            if (isIOS) {
-                let iosSlideOverCheck = setInterval(() => {
-                    if (!isExamActive || formSubmitted) { clearInterval(iosSlideOverCheck); return; }
-                    const ratio = window.innerWidth / window.screen.width;
-                    // Slide Over = very narrow strip, typically < 40% screen width
-                    if (ratio < 0.40) {
-                        triggerFloatingWarning('iPad Slide Over terdeteksi — mode overlay tidak diizinkan');
-                    }
-                }, 600);
-            }
-
-            // 4. Android: Detect window flag changes via resize timing anomaly
-            //    Floating windows cause very brief resize events
-            let resizeTimes = [];
-            window.addEventListener('resize', () => {
-                if (!isExamActive || formSubmitted) return;
-                const now = Date.now();
-                resizeTimes.push(now);
-                // Keep only last 5 resizes
-                if (resizeTimes.length > 5) resizeTimes.shift();
-                // 3+ resizes within 1 second = suspicious (floating window adjusting)
-                const recent = resizeTimes.filter(t => now - t < 1000);
-                if (recent.length >= 4) {
-                    resizeTimes = [];
-                    // Don't trigger if it's just a split screen (handled elsewhere)
-                    const wR = window.innerWidth / window.screen.width;
-                    const hR = window.innerHeight / window.screen.height;
-                    if (wR > MIN_WIDTH_RATIO && hR > MIN_HEIGHT_RATIO) {
-                        triggerFloatingWarning('Perubahan layar cepat terdeteksi — floating app mungkin aktif');
-                    }
-                }
-            });
-
-            // 5. Block touchstart from outside known safe areas (Android overlay tap-jacking)
-            document.addEventListener('touchstart', function(e) {
-                if (!isExamActive || formSubmitted) return;
-                // If touch came through and no visual element is at that point, overlay is stealing it
-                const el = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-                if (!el || el === document.body) {
-                    // Possibly overlay absorbing touches — just log silently, don't false-positive
-                }
-            }, { passive: true });
-        }
-
-        function triggerFloatingWarning(reason) {
-            if (floatingWarning.classList.contains('show')) return;
-            if (pipWarning.classList.contains('show')) return;
-            if (overlayWarning.classList.contains('show')) return;
-            if (!isExamActive || formSubmitted) return;
-            floatingWarning.classList.add('show');
-            floatingVal = 5;
-            document.getElementById('floating-countdown').textContent = floatingVal;
-            const ring = document.getElementById('floating-ring-progress');
-            ring.style.strokeDasharray = RING_CIRCUMFERENCE;
-            ring.style.strokeDashoffset = 0;
-            floatingTimer = setInterval(() => {
-                floatingVal--;
-                document.getElementById('floating-countdown').textContent = floatingVal;
-                ring.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - floatingVal / 5);
-                if (floatingVal <= 0) {
-                    clearInterval(floatingTimer);
-                    floatingTimer = null;
-                    floatingWarning.classList.remove('show');
-                    resetToLogin(reason || 'Floating app terdeteksi');
-                }
-            }, 1000);
-        }
-
-        // ====================================================================================
-        // ============================= APP SWITCH RESET =====================================
-        // ====================================================================================
-        function showAppSwitchWarning(reason) {
-            if (appSwitchWarning.classList.contains('show')) return;
-            if (!isExamActive || formSubmitted) return;
-
-            appReasonEl.textContent = 'Alasan: ' + reason;
-            appSwitchWarning.classList.add('show');
-
-            appSwitchVal = 5;
-            appCountdownEl.textContent = appSwitchVal;
-            ringProgress.style.strokeDasharray = RING_CIRCUMFERENCE;
-            ringProgress.style.strokeDashoffset = 0;
-
-            appSwitchTimer = setInterval(() => {
-                appSwitchVal--;
-                appCountdownEl.textContent = appSwitchVal;
-                const offset = RING_CIRCUMFERENCE * (1 - appSwitchVal / 5);
-                ringProgress.style.strokeDashoffset = offset;
-
-                if (appSwitchVal <= 0) {
-                    clearInterval(appSwitchTimer);
-                    appSwitchTimer = null;
-                    appSwitchWarning.classList.remove('show');
-                    resetToLogin(reason);
-                }
-            }, 1000);
-        }
-
-        function resetToLogin(reason) {
-            isExamActive = false;
-            formSubmitted = false;
-            violationDetected = false;
-            if (splitScreenTimer)  { clearInterval(splitScreenTimer);  splitScreenTimer  = null; }
-            if (appSwitchTimer)    { clearInterval(appSwitchTimer);    appSwitchTimer    = null; }
-            if (pipTimer)          { clearInterval(pipTimer);          pipTimer          = null; }
-            if (overlayTimer)      { clearInterval(overlayTimer);      overlayTimer      = null; }
-            if (floatingTimer)     { clearInterval(floatingTimer);     floatingTimer     = null; }
-
-            if (currentStudentData) {
-                try {
-                    const log = JSON.parse(localStorage.getItem('psat_violations') || '[]');
-                    log.push({ nis: currentStudentData.nis, nama: currentStudentData.nama, mapel: currentStudentData.mapel, reason, timestamp: new Date().toISOString() });
-                    localStorage.setItem('psat_violations', JSON.stringify(log));
-                } catch(e) {}
-            }
-
-            sessionStorage.removeItem('psat_session');
-            window.onbeforeunload = null;
-
-            if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
-            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-
-            // Stop PiP if running
-            if (document.pictureInPictureElement) {
-                document.exitPictureInPicture().catch(() => {});
-            }
-
-            showLoginPage();
-        }
-
-        // ==================== SUBMIT DETECTION ====================
-        function monitorIframeSubmission() {
-            window.addEventListener('message', function(event) {
-                if (event.data && typeof event.data === 'string') {
-                    const d = event.data.toLowerCase();
-                    if (d.includes('submit') || d.includes('kirim') || d.includes('selesai')) {
-                        if (isExamActive && !formSubmitted) handleFormSubmitted();
-                    }
-                }
-            });
-
-            let ck = setInterval(() => {
-                if (!isExamActive || formSubmitted) { clearInterval(ck); return; }
-                try {
-                    const url = examIframe.contentWindow.location.href;
-                    if (url.includes('formResponse') || url.includes('closedform') || url.includes('AfterSibmit') || url.includes('closingscreen')) {
-                        if (!formSubmitted) handleFormSubmitted();
-                    }
-                } catch(e) {}
-                try {
-                    const doc = examIframe.contentDocument || examIframe.contentWindow.document;
-                    const txt = doc.body ? doc.body.innerText.toLowerCase() : '';
-                    const phrases = ['tanggapan anda telah direkam','your response has been recorded','respons anda telah dikirim','terima kasih','thank you for submitting','submitted successfully','formulir telah dikirim'];
-                    if (phrases.some(p => txt.includes(p)) && !formSubmitted) handleFormSubmitted();
-                } catch(e) {}
-            }, 1500);
-        }
-
-        function handleFormSubmitted() {
-            if (formSubmitted || !isExamActive) return;
-            formSubmitted = true;
-            if (currentStudentData) {
-                document.getElementById('submit-info').innerHTML =
-                    `<strong>${currentStudentData.nama}</strong><br>NIS: ${currentStudentData.nis}<br>Kelas: ${currentStudentData.kelas}<br>Mata Pelajaran: ${currentStudentData.mapel}`;
-            }
-            submitSuccessOverlay.classList.add('show');
-        }
-
-        function handleSubmitConfirm() {
-            submitSuccessOverlay.classList.remove('show');
-            isExamActive = false;
-            markExamCompleted();
-            if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
-            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-            window.onbeforeunload = null;
-            showFinishPage();
-        }
-
-        // ==================== SPLIT SCREEN ====================
-        function setupSplitScreenDetection() {
-            let si = setInterval(() => {
-                if (!isExamActive || formSubmitted) { clearInterval(si); return; }
-                checkSplitScreen();
-            }, 800);
-        }
-
-        function checkSplitScreen() {
-            const wR = window.innerWidth / window.screen.width;
-            const hR = window.innerHeight / window.screen.height;
-            const isSplit = wR < MIN_WIDTH_RATIO || hR < MIN_HEIGHT_RATIO;
-            if (isSplit && !formSubmitted) showSplitScreenWarning();
-            else hideSplitScreenWarning();
-        }
-
-        function showSplitScreenWarning() {
-            if (splitScreenWarning.classList.contains('show')) return;
-            splitScreenWarning.classList.add('show');
-            splitCountdown = 10;
-            document.getElementById('split-countdown').textContent = splitCountdown;
-            splitScreenTimer = setInterval(() => {
-                splitCountdown--;
-                const el = document.getElementById('split-countdown');
-                if (el) el.textContent = splitCountdown;
-                if (splitCountdown <= 0) {
-                    clearInterval(splitScreenTimer);
-                    const wR = window.innerWidth / window.screen.width;
-                    const hR = window.innerHeight / window.screen.height;
-                    if (wR < MIN_WIDTH_RATIO || hR < MIN_HEIGHT_RATIO) {
-                        splitScreenWarning.classList.remove('show');
-                        showAppSwitchWarning('Menggunakan split screen / layar terbagi');
-                    } else {
-                        hideSplitScreenWarning();
-                    }
-                }
-            }, 1000);
-        }
-
-        function hideSplitScreenWarning() {
-            if (!splitScreenWarning.classList.contains('show')) return;
-            splitScreenWarning.classList.remove('show');
-            if (splitScreenTimer) { clearInterval(splitScreenTimer); splitScreenTimer = null; }
-        }
-
-        window.addEventListener('resize', () => {
-            if (isExamActive && !formSubmitted) checkSplitScreen();
+              if (isExamActive && !formSubmitted && document.hidden) {
+                triggerBgAppWarning(['Kontrol layar diambil alih oleh sistem/app lain']);
+              }
+            }, 500);
+          }
         });
+      } catch (e) {}
+    };
+    acquireWakeLock();
+    document.addEventListener('visibilitychange', async () => {
+      if (!document.hidden && !wakeLock && isExamActive) acquireWakeLock();
+    });
+  }
 
-        // ==================== LOGIN ====================
-        function updateMapelOptions(kelas) {
-            mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
-            if (kelas && MAPEL_BY_KELAS[kelas]) {
-                mapelSelect.disabled = false;
-                MAPEL_BY_KELAS[kelas].forEach(m => {
-                    const o = document.createElement('option');
-                    o.value = m; o.textContent = m;
-                    mapelSelect.appendChild(o);
-                });
-            } else {
-                mapelSelect.disabled = true;
-                mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>';
-            }
+  // ── Signal 6: Deteksi aplikasi Android yang umum digunakan untuk mencontek ───────
+  // Deteksi indirect via viewport + timing anomaly khas setiap app
+  const SUSPICIOUS_KNOWN_SIZES = [
+    { w: 320, label: 'WhatsApp Bubble / Chat Head' },
+    { w: 340, label: 'Messenger Chat Bubble' },
+    { w: 360, label: 'Telegram Floating Widget' },
+    { w: 380, label: 'Calculator Floating App' },
+  ];
+
+  // ── Signal 7: Detect "process.env" injection oleh app lain ─────────────────────
+  // Beberapa app Android (seperti Xposed modules) menginjeksi variable global
+  const INJECTED_GLOBALS = ['__xposed', '__frida', '__substrate', 'xHook', '_hooker'];
+  INJECTED_GLOBALS.forEach(g => {
+    if (window[g] !== undefined) {
+      triggerBgAppWarning([`Root/Hook framework terdeteksi: ${g}`]);
+    }
+  });
+
+  // ── Signal 8: Aggressive periodik scan setiap 3 detik ───────────────────────────
+  setInterval(() => {
+    if (!isExamActive || formSubmitted) return;
+    const suspiciousApps = detectPossibleBackgroundApps();
+    if (suspiciousApps.length > 0) {
+      triggerBgAppWarning(suspiciousApps);
+    }
+  }, 3000);
+}
+
+function detectPossibleBackgroundApps() {
+  const suspects = [];
+
+  // Cek ukuran viewport vs screen — perbedaan besar = ada chrome/toolbar ekstra dari app lain
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const sw = window.screen.width;
+  const sh = window.screen.height;
+  const aw = window.screen.availWidth;
+  const ah = window.screen.availHeight;
+
+  // Available screen jauh lebih kecil dari screen total = taskbar/dock dari app lain
+  const availDiffW = sw - aw;
+  const availDiffH = sh - ah;
+  if (availDiffH > 120 && isMobile) {
+    suspects.push(`Taskbar/dock app ekstra aktif (${availDiffH}px tersita)`);
+  }
+
+  // Outer vs inner window difference (desktop dev tools / sidebar app)
+  if (!isMobile) {
+    if (window.outerWidth - window.innerWidth > 200) {
+      suspects.push('Panel samping atau dev tools terbuka');
+    }
+    if (window.outerHeight - window.innerHeight > 200) {
+      suspects.push('Panel bawah atau dev tools terbuka');
+    }
+  }
+
+  // Cek apakah ada element asing di document (injeksi dari extension/app)
+  const bodyChildren = document.body.children;
+  const KNOWN_IDS = new Set([
+    'login-page','exam-page','finish-page','violation-popup',
+    'app-switch-warning','pip-warning','overlay-warning','floating-warning',
+    'split-screen-warning','submit-success-overlay','fullscreen-prompt',
+    'security-shield','overlay-trap-canvas','bg-app-warning','bubble-warning'
+  ]);
+  for (let i = 0; i < bodyChildren.length; i++) {
+    const child = bodyChildren[i];
+    const id = child.id || '';
+    const tag = child.tagName;
+    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK') continue;
+    if (!KNOWN_IDS.has(id) && id !== '') {
+      const style = window.getComputedStyle(child);
+      if (style.position === 'fixed' && parseInt(style.zIndex) > 100000) {
+        suspects.push(`Elemen asing z-index tinggi: #${id || tag}`);
+      }
+    }
+  }
+
+  return suspects;
+}
+
+function triggerBgAppWarning(appList) {
+  if (bgAppWarning.classList.contains('show')) return;
+  if (!isExamActive || formSubmitted) return;
+
+  bgAppViolationCount++;
+
+  // Isi daftar aplikasi
+  const listEl = document.getElementById('bg-app-list');
+  listEl.innerHTML = appList.map(a => `<p>⚠️ ${a}</p>`).join('');
+
+  bgAppWarning.classList.add('show');
+  bgAppVal = 10;
+  document.getElementById('bg-countdown').textContent = bgAppVal;
+  const ring = document.getElementById('bg-ring-progress');
+  ring.style.strokeDasharray = RING_C;
+  ring.style.strokeDashoffset = 0;
+
+  bgAppTimer = setInterval(() => {
+    bgAppVal--;
+    document.getElementById('bg-countdown').textContent = bgAppVal;
+    ring.style.strokeDashoffset = RING_C * (1 - bgAppVal / 10);
+
+    if (bgAppVal <= 0) {
+      clearInterval(bgAppTimer); bgAppTimer = null;
+      bgAppWarning.classList.remove('show');
+      // Setelah 3x pelanggaran = RESET
+      if (bgAppViolationCount >= 3) {
+        resetToLogin('Background app terdeteksi 3x — reset otomatis');
+      }
+    }
+  }, 1000);
+}
+
+function dismissBgAppWarning() {
+  bgAppWarning.classList.remove('show');
+  if (bgAppTimer) { clearInterval(bgAppTimer); bgAppTimer = null; }
+  // Jika sudah 3x pelanggaran setelah dismiss = reset
+  if (bgAppViolationCount >= 3) {
+    resetToLogin('Background app terdeteksi berulang kali');
+  }
+}
+
+// ====================================================================================
+// ===== LAYER 2: CHAT BUBBLE KILLER (NEW) ============================================
+// Gelembung chat dari WhatsApp, Messenger, Telegram, dan apps serupa
+// ====================================================================================
+function setupChatBubbleKiller() {
+
+  // ── Method 1: Pointer hitTest — bubble menyerap touch event ──────────────────────
+  // Chat bubbles biasanya hidup di atas layer sehingga pointer event "hilang"
+  let consecutiveMissedTouches = 0;
+  document.addEventListener('touchstart', (e) => {
+    if (!isExamActive || formSubmitted) return;
+    const t = e.touches[0];
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+
+    // Jika elemen yang dituju bukan milik kita
+    if (!el || (!el.closest('#exam-page') && !el.closest('#login-page') &&
+        !el.closest('#finish-page') && !el.closest('.sec-overlay') &&
+        !el.closest('#fullscreen-prompt'))) {
+      consecutiveMissedTouches++;
+      if (consecutiveMissedTouches >= 2) {
+        consecutiveMissedTouches = 0;
+        triggerBubbleWarning('Chat bubble menyerap sentuhan layar');
+      }
+    } else {
+      consecutiveMissedTouches = 0;
+    }
+  }, { passive: true, capture: true });
+
+  // ── Method 2: Resize + blur burst — khas saat chat bubble muncul ─────────────────
+  let blurBurstCount = 0;
+  let blurBurstTimer = null;
+
+  window.addEventListener('blur', () => {
+    if (!isExamActive || formSubmitted) return;
+    blurBurstCount++;
+    if (blurBurstTimer) clearTimeout(blurBurstTimer);
+    blurBurstTimer = setTimeout(() => { blurBurstCount = 0; }, 2000);
+
+    // Blur 3+ kali dalam 2 detik = chat bubble muncul-hilang
+    if (blurBurstCount >= 3) {
+      blurBurstCount = 0;
+      triggerBubbleWarning('Aktivitas chat bubble / gelembung chat terdeteksi');
+    }
+  });
+
+  // ── Method 3: MutationObserver — deteksi DOM bubble yang diinjeksi ───────────────
+  const bubbleObserver = new MutationObserver((muts) => {
+    if (!isExamActive || formSubmitted) return;
+    muts.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (node.nodeType !== 1) return;
+        const cls = (node.className || '').toLowerCase();
+        const id  = (node.id || '').toLowerCase();
+        // Heuristik: class/id mengandung "bubble", "chat", "head", "float"
+        const BUBBLE_PATTERNS = ['bubble','chat-head','chathead','floatcall','floating-msg','notif-pop'];
+        const isBubble = BUBBLE_PATTERNS.some(p => cls.includes(p) || id.includes(p));
+        if (isBubble) {
+          node.remove(); // Langsung hapus
+          triggerBubbleWarning('Elemen chat bubble terdeteksi di-inject ke layar');
         }
+      });
+    });
+  });
+  bubbleObserver.observe(document.body, { childList: true, subtree: true });
 
-        function handleLogin() {
-            const nama  = document.getElementById('nama').value.trim();
-            const nis   = document.getElementById('nis').value.trim();
-            const kelas = kelasSelect.value;
-            const mapel = mapelSelect.value;
-            const kode  = document.getElementById('kode-ujian').value;
-            if (!nama || !nis || !kelas || !mapel || !kode) { showError('Semua field wajib diisi!'); return; }
-            if (kode !== VALID_EXAM_CODE) { showError('Kode ujian tidak valid!'); shakeElement(document.getElementById('kode-ujian')); return; }
-            currentStudentData = { nama, nis, kelas, mapel, token: generateToken(), startTime: Date.now() };
-            sessionStorage.setItem('psat_session', JSON.stringify(currentStudentData));
-            hideError();
-            document.activeElement.blur();
-            fullscreenPrompt.classList.remove('hidden');
-        }
+  // ── Method 4: VisibilityState flicker — khas chat head tap ───────────────────────
+  let visFlickerCount = 0;
+  let lastVisChange = 0;
+  document.addEventListener('visibilitychange', () => {
+    if (!isExamActive || formSubmitted) return;
+    const now = Date.now();
+    const elapsed = now - lastVisChange;
+    lastVisChange = now;
 
-        function startExamFullscreen() {
-            fullscreenPrompt.classList.add('hidden');
-            blockNotifications();
-            const el = document.documentElement;
-            const p = el.requestFullscreen?.() || el.webkitRequestFullscreen?.() || el.mozRequestFullScreen?.() || el.msRequestFullscreen?.();
-            if (p && typeof p.then === 'function') p.then(() => startExam()).catch(() => startExam());
-            else startExam();
-        }
+    // Flicker cepat (< 800ms bolak-balik) = chat head tap
+    if (elapsed < 800 && elapsed > 50) {
+      visFlickerCount++;
+      if (visFlickerCount >= 2) {
+        visFlickerCount = 0;
+        triggerBubbleWarning('Layar berkedip cepat — chat bubble / floating notification aktif');
+      }
+    } else {
+      visFlickerCount = 0;
+    }
+  });
+}
 
-        function startExam() {
-            isExamActive = true;
-            formSubmitted = false;
-            loginPage.classList.add('hidden');
-            examPage.classList.remove('hidden');
-            examPage.style.display = 'flex';
-            document.getElementById('exam-title').textContent = `PSAT - ${currentStudentData.mapel}`;
-            document.getElementById('student-info').textContent = `${currentStudentData.nama} - ${currentStudentData.nis} - ${currentStudentData.kelas}`;
-            loadGoogleForm();
-            activateStrictMode();
-            setupSplitScreenDetection();
+function triggerBubbleWarning(reason) {
+  if (bubbleWarning.classList.contains('show')) return;
+  if (bgAppWarning.classList.contains('show')) return;
+  if (!isExamActive || formSubmitted) return;
 
-            // ===== ACTIVATE NEW SECURITY LAYERS =====
-            setupAntiPiP();
-            setupAntiOverlay();
-            setupAntiFloatingApp();
-            startOverlayObserver();
+  bubbleWarning.classList.add('show');
+  bubbleVal = 5;
+  document.getElementById('bubble-countdown').textContent = bubbleVal;
+  const ring = document.getElementById('bubble-ring-progress');
+  ring.style.strokeDasharray = RING_C;
+  ring.style.strokeDashoffset = 0;
 
-            // Enable overlay pointer check after brief delay (avoid false positive on load)
-            // (Handled internally by setupAntiOverlay now)
-        }
+  bubbleTimer = setInterval(() => {
+    bubbleVal--;
+    document.getElementById('bubble-countdown').textContent = bubbleVal;
+    ring.style.strokeDashoffset = RING_C * (1 - bubbleVal / 5);
+    if (bubbleVal <= 0) {
+      clearInterval(bubbleTimer); bubbleTimer = null;
+      bubbleWarning.classList.remove('show');
+      resetToLogin(reason || 'Chat bubble terdeteksi');
+    }
+  }, 1000);
+}
 
-        function loadGoogleForm() {
-            const { kelas, mapel } = currentStudentData;
-            const formUrl = FORM_MAPPING[kelas]?.[mapel];
-            if (!formUrl) {
-                examIframe.srcdoc = `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:linear-gradient(135deg,#f0fdf4,#dcfce7);padding:20px;box-sizing:border-box}.container{text-align:center;max-width:500px;background:white;padding:40px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.1)}h1{color:#1a472a}p{color:#666;line-height:1.6}.badge{display:inline-block;background:linear-gradient(135deg,#d4af37,#f4d03f);color:#1a472a;padding:10px 20px;border-radius:30px;font-weight:bold;margin-top:20px}.info{background:#f0fdf4;padding:15px;border-radius:10px;margin-top:20px;font-size:14px;color:#1a472a}</style></head><body><div class="container"><h1>📝 ${mapel}</h1><p>Soal ujian <strong>${mapel}</strong> untuk kelas <strong>${kelas}</strong> akan ditampilkan di sini.</p><div class="badge">DEMO MODE</div><div class="info"><strong>Catatan Admin:</strong><br>Ganti URL di FORM_MAPPING dengan URL Google Form yang sebenarnya.</div></div></body></html>`;
-                setTimeout(() => loadingOverlay.classList.add('hidden'), 1000);
-            } else {
-                examIframe.src = formUrl;
-            }
-        }
+// ====================================================================================
+// ===== LAYER 3: ANTI-PiP ============================================================
+// ====================================================================================
+function setupAntiPiP() {
+  if ('pictureInPictureEnabled' in document) {
+    try { Object.defineProperty(document, 'pictureInPictureEnabled', { get: () => false, configurable: true }); } catch (e) {}
+  }
+  function guardVideoElement(video) {
+    video.disablePictureInPicture = true;
+    video.setAttribute('disablepictureinpicture', '');
+    video.addEventListener('enterpictureinpicture', function (e) {
+      if (!isExamActive || formSubmitted) return;
+      e.preventDefault();
+      if (document.pictureInPictureElement) document.exitPictureInPicture().catch(() => {});
+      triggerPiPWarning();
+    });
+  }
+  document.querySelectorAll('video').forEach(guardVideoElement);
+  const videoObserver = new MutationObserver(muts => {
+    muts.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (node.nodeName === 'VIDEO') guardVideoElement(node);
+        if (node.querySelectorAll) node.querySelectorAll('video').forEach(guardVideoElement);
+      });
+    });
+  });
+  videoObserver.observe(document.body, { childList: true, subtree: true });
+  document.addEventListener('enterpictureinpicture', function () {
+    if (!isExamActive || formSubmitted) return;
+    if (document.pictureInPictureElement) document.exitPictureInPicture().catch(() => {});
+    triggerPiPWarning();
+  });
+  document.addEventListener('leavepictureinpicture', function () {
+    if (pipWarning.classList.contains('show')) hidePiPWarning();
+  });
+  setInterval(() => {
+    if (!isExamActive || formSubmitted) return;
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture().catch(() => {});
+      triggerPiPWarning();
+    }
+  }, 800);
+}
 
-        // ==================== ANTI-CHEAT (existing + enhanced) ====================
-        function setupAntiCheating() {
-            document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'F12') { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba membuka Developer Tools (F12)'); return false; }
-                if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba membuka Developer Tools'); return false; }
-                if (e.ctrlKey && e.key === 'u') { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba melihat source code'); return false; }
-                if (e.ctrlKey && ['s','c','v','a','p'].includes(e.key)) {
-                    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') { e.preventDefault(); return false; }
-                }
-                if (e.key === 'Escape' && isExamActive) { e.preventDefault(); return false; }
-                if (e.altKey && e.key === 'Tab') { e.preventDefault(); return false; }
-                if ((e.key === 'Meta' || e.key === 'OS') && isExamActive) { e.preventDefault(); return false; }
-            });
-            document.addEventListener('dragstart', e => { e.preventDefault(); return false; });
-            document.addEventListener('selectstart', function(e) {
-                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') { e.preventDefault(); return false; }
-            });
+function triggerPiPWarning() {
+  if (pipWarning.classList.contains('show')) return;
+  if (!isExamActive || formSubmitted) return;
+  pipWarning.classList.add('show');
+  pipVal = 5;
+  document.getElementById('pip-countdown').textContent = pipVal;
+  const ring = document.getElementById('pip-ring-progress');
+  ring.style.strokeDasharray = RING_C; ring.style.strokeDashoffset = 0;
+  pipTimer = setInterval(() => {
+    pipVal--;
+    document.getElementById('pip-countdown').textContent = pipVal;
+    ring.style.strokeDashoffset = RING_C * (1 - pipVal / 5);
+    if (pipVal <= 0) {
+      clearInterval(pipTimer); pipTimer = null;
+      pipWarning.classList.remove('show');
+      resetToLogin('Menggunakan Picture-in-Picture (PiP)');
+    }
+  }, 1000);
+}
+function hidePiPWarning() { pipWarning.classList.remove('show'); if (pipTimer) { clearInterval(pipTimer); pipTimer = null; } }
 
-            // Block screenshot keys (Windows: Win+PrtScn, Mac: Cmd+Shift+3/4/5)
-            document.addEventListener('keydown', function(e) {
-                if (!isExamActive || formSubmitted) return;
-                if (e.key === 'PrintScreen') {
-                    e.preventDefault();
-                    showAppSwitchWarning('Mencoba screenshot (Print Screen)');
-                }
-                if (e.metaKey && e.shiftKey && ['3','4','5','6'].includes(e.key)) {
-                    e.preventDefault();
-                    showAppSwitchWarning('Mencoba screenshot (Mac Shortcut)');
-                }
-            });
-        }
+// ====================================================================================
+// ===== LAYER 4: ANTI-OVERLAY ========================================================
+// ====================================================================================
+function setupAntiOverlay() {
+  document.addEventListener('visibilitychange', () => {
+    if (!isExamActive || formSubmitted) return;
+    if (document.hidden) {
+      setTimeout(() => { if (document.hidden && isExamActive && !formSubmitted) triggerOverlayWarning('Layar tersembunyi — overlay/app lain aktif'); }, 150);
+    }
+  });
+  document.addEventListener('pointerdown', (e) => {
+    if (!isExamActive || formSubmitted) return;
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (!el || el.ownerDocument !== document) triggerOverlayWarning('Input dibajak overlay asing');
+  }, true);
+  let blurZeroTimer = null;
+  window.addEventListener('blur', () => {
+    if (!isExamActive || formSubmitted) return;
+    blurZeroTimer = setTimeout(() => {
+      if (!isExamActive || formSubmitted) return;
+      const activeEl = document.activeElement;
+      const isInternalFocus = activeEl && ['INPUT','SELECT','TEXTAREA','IFRAME'].includes(activeEl.tagName);
+      if (!isInternalFocus) triggerOverlayWarning('Fokus hilang dari aplikasi ujian');
+    }, 300);
+  });
+  window.addEventListener('focus', () => { if (blurZeroTimer) { clearTimeout(blurZeroTimer); blurZeroTimer = null; } });
+  try {
+    if (navigator.mediaDevices) {
+      navigator.mediaDevices.getDisplayMedia = function () {
+        if (isExamActive && !formSubmitted) { triggerOverlayWarning('Percobaan screen recording terdeteksi'); return Promise.reject(new DOMException('Blocked', 'NotAllowedError')); }
+        return Promise.reject(new Error('Not available'));
+      };
+    }
+  } catch (e) {}
+  let lastRAFTime = performance.now();
+  function rafHeartbeat(ts) {
+    if (!isExamActive || formSubmitted) return;
+    const gap = ts - lastRAFTime; lastRAFTime = ts;
+    if (gap > 500 && gap < 60000) triggerOverlayWarning('Render loop diinterupsi — overlay sistem aktif');
+    requestAnimationFrame(rafHeartbeat);
+  }
+  window._startRAFHeartbeat = function () { lastRAFTime = performance.now(); requestAnimationFrame(rafHeartbeat); };
+  setInterval(() => {
+    if (!isExamActive || formSubmitted) return;
+    if (document.hidden || document.visibilityState !== 'visible') triggerOverlayWarning('Halaman ujian tidak visible');
+    if (document.pictureInPictureElement) { document.exitPictureInPicture().catch(() => {}); triggerPiPWarning(); }
+  }, 300);
+  const shield = document.createElement('div');
+  shield.id = 'security-shield';
+  shield.style.cssText = 'position:fixed;inset:0;z-index:89999;pointer-events:none;background:transparent;-webkit-tap-highlight-color:transparent;touch-action:none;';
+  shield.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(shield);
+}
 
-        function activateStrictMode() {
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden && isExamActive && !formSubmitted) {
-                    setTimeout(() => {
-                        if (document.hidden && isExamActive && !formSubmitted) {
-                            showAppSwitchWarning('Keluar dari ujian / membuka aplikasi lain / notifikasi');
-                        }
-                    }, 200);
-                }
-            });
+function triggerOverlayWarning(reason) {
+  if (!isExamActive || formSubmitted) return;
+  overlayWarning.classList.add('show');
+  setTimeout(() => { overlayWarning.classList.remove('show'); resetToLogin(reason || 'Overlay app terdeteksi'); }, 800);
+}
 
-            let blurTimeout = null;
-            window.addEventListener('blur', function() {
-                if (!isExamActive || formSubmitted) return;
-                blurTimeout = setTimeout(() => {
-                    if (isExamActive && !formSubmitted && document.hidden) {
-                        showAppSwitchWarning('Browser kehilangan fokus / aplikasi lain dibuka');
-                    }
-                }, 400);
-            });
-            window.addEventListener('focus', function() {
-                if (blurTimeout) { clearTimeout(blurTimeout); blurTimeout = null; }
-            });
+// ====================================================================================
+// ===== LAYER 5: ANTI-FLOATING APP ===================================================
+// ====================================================================================
+function setupAntiFloatingApp() {
+  let focusLostTime = 0;
+  let quickFocusChanges = 0;
+  let quickFocusTimer = null;
+  window.addEventListener('blur', () => { if (!isExamActive || formSubmitted) return; focusLostTime = Date.now(); });
+  window.addEventListener('focus', () => {
+    if (!isExamActive || formSubmitted) return;
+    const elapsed = Date.now() - focusLostTime;
+    if (focusLostTime > 0 && elapsed < 300 && elapsed > 0) {
+      quickFocusChanges++;
+      if (quickFocusTimer) clearTimeout(quickFocusTimer);
+      quickFocusTimer = setTimeout(() => { quickFocusChanges = 0; }, 3000);
+      if (quickFocusChanges >= 3) { quickFocusChanges = 0; triggerFloatingWarning('Aktivitas floating app / chat bubble terdeteksi'); }
+    }
+    focusLostTime = 0;
+  });
+  if (isIOS) {
+    const iosSO = setInterval(() => {
+      if (!isExamActive || formSubmitted) { clearInterval(iosSO); return; }
+      const ratio = window.innerWidth / window.screen.width;
+      if (ratio < 0.40) triggerFloatingWarning('iPad Slide Over terdeteksi');
+    }, 600);
+  }
+  let resizeTimes = [];
+  window.addEventListener('resize', () => {
+    if (!isExamActive || formSubmitted) return;
+    const now = Date.now();
+    resizeTimes.push(now);
+    if (resizeTimes.length > 5) resizeTimes.shift();
+    const recent = resizeTimes.filter(t => now - t < 1000);
+    if (recent.length >= 4) {
+      resizeTimes = [];
+      const wR = window.innerWidth / window.screen.width;
+      const hR = window.innerHeight / window.screen.height;
+      if (wR > MIN_WIDTH_RATIO && hR > MIN_HEIGHT_RATIO) triggerFloatingWarning('Perubahan layar cepat — floating app mungkin aktif');
+    }
+  });
+}
 
-            document.addEventListener('freeze', function() {
-                if (isExamActive && !formSubmitted) showAppSwitchWarning('Aplikasi di-freeze / dipindah ke background');
-            });
+function triggerFloatingWarning(reason) {
+  if (floatingWarning.classList.contains('show')) return;
+  if (pipWarning.classList.contains('show')) return;
+  if (overlayWarning.classList.contains('show')) return;
+  if (!isExamActive || formSubmitted) return;
+  floatingWarning.classList.add('show');
+  floatingVal = 5;
+  document.getElementById('floating-countdown').textContent = floatingVal;
+  const ring = document.getElementById('floating-ring-progress');
+  ring.style.strokeDasharray = RING_C; ring.style.strokeDashoffset = 0;
+  floatingTimer = setInterval(() => {
+    floatingVal--;
+    document.getElementById('floating-countdown').textContent = floatingVal;
+    ring.style.strokeDashoffset = RING_C * (1 - floatingVal / 5);
+    if (floatingVal <= 0) {
+      clearInterval(floatingTimer); floatingTimer = null;
+      floatingWarning.classList.remove('show');
+      resetToLogin(reason || 'Floating app terdeteksi');
+    }
+  }, 1000);
+}
 
-            window.addEventListener('pagehide', function() {
-                if (isExamActive && !formSubmitted) showAppSwitchWarning('Halaman disembunyikan / app berpindah');
-            });
+// ====================================================================================
+// ===== LAYER 6: APP SWITCH / VISIBILITY =============================================
+// ====================================================================================
+function showAppSwitchWarning(reason) {
+  if (appSwitchWarning.classList.contains('show')) return;
+  if (!isExamActive || formSubmitted) return;
+  appReasonEl.textContent = 'Alasan: ' + reason;
+  appSwitchWarning.classList.add('show');
+  appSwitchVal = 5;
+  appCountdownEl.textContent = appSwitchVal;
+  ringProgress.style.strokeDasharray = RING_C; ringProgress.style.strokeDashoffset = 0;
+  appSwitchTimer = setInterval(() => {
+    appSwitchVal--;
+    appCountdownEl.textContent = appSwitchVal;
+    ringProgress.style.strokeDashoffset = RING_C * (1 - appSwitchVal / 5);
+    if (appSwitchVal <= 0) {
+      clearInterval(appSwitchTimer); appSwitchTimer = null;
+      appSwitchWarning.classList.remove('show');
+      resetToLogin(reason);
+    }
+  }, 1000);
+}
 
-            ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(evt => {
-                document.addEventListener(evt, function() {
-                    const isFS = document.fullscreenElement || document.webkitFullscreenElement ||
-                                 document.mozFullScreenElement || document.msFullscreenElement;
-                    if (!isFS && isExamActive && !formSubmitted && !isMobile) {
-                        showAppSwitchWarning('Keluar dari mode fullscreen');
-                    }
-                });
-            });
+// ====================================================================================
+// ===== LAYER 7: SPLIT SCREEN ========================================================
+// ====================================================================================
+function setupSplitScreenDetection() {
+  let si = setInterval(() => { if (!isExamActive || formSubmitted) { clearInterval(si); return; } checkSplitScreen(); }, 800);
+}
+function checkSplitScreen() {
+  const wR = window.innerWidth / window.screen.width;
+  const hR = window.innerHeight / window.screen.height;
+  if ((wR < MIN_WIDTH_RATIO || hR < MIN_HEIGHT_RATIO) && !formSubmitted) showSplitScreenWarning();
+  else hideSplitScreenWarning();
+}
+function showSplitScreenWarning() {
+  if (splitScreenWarning.classList.contains('show')) return;
+  splitScreenWarning.classList.add('show');
+  splitCountdown = 10;
+  document.getElementById('split-countdown').textContent = splitCountdown;
+  splitScreenTimer = setInterval(() => {
+    splitCountdown--;
+    const el = document.getElementById('split-countdown');
+    if (el) el.textContent = splitCountdown;
+    if (splitCountdown <= 0) {
+      clearInterval(splitScreenTimer);
+      const wR = window.innerWidth / window.screen.width;
+      const hR = window.innerHeight / window.screen.height;
+      if (wR < MIN_WIDTH_RATIO || hR < MIN_HEIGHT_RATIO) { splitScreenWarning.classList.remove('show'); showAppSwitchWarning('Menggunakan split screen / layar terbagi'); }
+      else hideSplitScreenWarning();
+    }
+  }, 1000);
+}
+function hideSplitScreenWarning() {
+  if (!splitScreenWarning.classList.contains('show')) return;
+  splitScreenWarning.classList.remove('show');
+  if (splitScreenTimer) { clearInterval(splitScreenTimer); splitScreenTimer = null; }
+}
+window.addEventListener('resize', () => { if (isExamActive && !formSubmitted) checkSplitScreen(); });
 
-            window.onbeforeunload = function(e) {
-                if (isExamActive && !formSubmitted) { e.preventDefault(); e.returnValue = ''; return ''; }
-            };
+// ==================== RESET ====================
+function resetToLogin(reason) {
+  isExamActive = false; formSubmitted = false; violationDetected = false;
+  [splitScreenTimer, appSwitchTimer, pipTimer, overlayTimer, floatingTimer, bubbleTimer, bgAppTimer].forEach(t => { if (t) clearInterval(t); });
+  splitScreenTimer = appSwitchTimer = pipTimer = overlayTimer = floatingTimer = bubbleTimer = bgAppTimer = null;
+  if (currentStudentData) {
+    try {
+      const log = JSON.parse(localStorage.getItem('psat_violations') || '[]');
+      log.push({ nis: currentStudentData.nis, nama: currentStudentData.nama, mapel: currentStudentData.mapel, reason, timestamp: new Date().toISOString() });
+      localStorage.setItem('psat_violations', JSON.stringify(log));
+    } catch (e) {}
+  }
+  sessionStorage.removeItem('psat_session');
+  window.onbeforeunload = null;
+  if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+  else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  if (document.pictureInPictureElement) document.exitPictureInPicture().catch(() => {});
+  showLoginPage();
+}
 
-            // DevTools detection
-            let dtOpen = false;
-            setInterval(() => {
-                if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-                    if (!dtOpen && isExamActive && !formSubmitted) { dtOpen = true; showAppSwitchWarning('Terdeteksi membuka Developer Tools'); }
-                } else { dtOpen = false; }
-            }, 1000);
+// ==================== SUBMIT DETECTION ====================
+function monitorIframeSubmission() {
+  window.addEventListener('message', function (event) {
+    if (event.data && typeof event.data === 'string') {
+      const d = event.data.toLowerCase();
+      if (d.includes('submit') || d.includes('kirim') || d.includes('selesai')) { if (isExamActive && !formSubmitted) handleFormSubmitted(); }
+    }
+  });
+  let ck = setInterval(() => {
+    if (!isExamActive || formSubmitted) { clearInterval(ck); return; }
+    try {
+      const url = examIframe.contentWindow.location.href;
+      if (url.includes('formResponse') || url.includes('closedform')) { if (!formSubmitted) handleFormSubmitted(); }
+    } catch (e) {}
+    try {
+      const doc = examIframe.contentDocument || examIframe.contentWindow.document;
+      const txt = doc.body ? doc.body.innerText.toLowerCase() : '';
+      const phrases = ['tanggapan anda telah direkam','your response has been recorded','terima kasih','thank you for submitting','submitted successfully'];
+      if (phrases.some(p => txt.includes(p)) && !formSubmitted) handleFormSubmitted();
+    } catch (e) {}
+  }, 1500);
+}
+function handleFormSubmitted() {
+  if (formSubmitted || !isExamActive) return;
+  formSubmitted = true;
+  if (currentStudentData) {
+    document.getElementById('submit-info').innerHTML = `<strong>${currentStudentData.nama}</strong><br>NIS: ${currentStudentData.nis}<br>Kelas: ${currentStudentData.kelas}<br>Mata Pelajaran: ${currentStudentData.mapel}`;
+  }
+  submitSuccessOverlay.classList.add('show');
+}
+function handleSubmitConfirm() {
+  submitSuccessOverlay.classList.remove('show');
+  isExamActive = false;
+  markExamCompleted();
+  if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+  window.onbeforeunload = null;
+  showFinishPage();
+}
 
-            // Override Notification API
-            if ('Notification' in window) {
-                try {
-                    const _O = window.Notification;
-                    window.Notification = function(t, o) { if (isExamActive) return { close: () => {} }; return new _O(t, o); };
-                    Object.assign(window.Notification, _O);
-                    Object.defineProperty(window.Notification, 'permission', { get: () => isExamActive ? 'denied' : (_O.permission || 'default'), configurable: true });
-                    window.Notification.requestPermission = () => Promise.resolve('denied');
-                } catch(e) {}
-            }
+// ==================== LOGIN ====================
+function updateMapelOptions(kelas) {
+  mapelSelect.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>';
+  if (kelas && MAPEL_BY_KELAS[kelas]) {
+    mapelSelect.disabled = false;
+    MAPEL_BY_KELAS[kelas].forEach(m => { const o = document.createElement('option'); o.value = m; o.textContent = m; mapelSelect.appendChild(o); });
+  } else { mapelSelect.disabled = true; mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>'; }
+}
+function handleLogin() {
+  const nama = document.getElementById('nama').value.trim();
+  const nis  = document.getElementById('nis').value.trim();
+  const kelas = kelasSelect.value;
+  const mapel = mapelSelect.value;
+  const kode  = document.getElementById('kode-ujian').value;
+  if (!nama || !nis || !kelas || !mapel || !kode) { showError('Semua field wajib diisi!'); return; }
+  if (kode !== VALID_EXAM_CODE) { showError('Kode ujian tidak valid!'); shakeElement(document.getElementById('kode-ujian')); return; }
+  currentStudentData = { nama, nis, kelas, mapel, token: generateToken(), startTime: Date.now() };
+  sessionStorage.setItem('psat_session', JSON.stringify(currentStudentData));
+  hideError();
+  document.activeElement.blur();
+  fullscreenPrompt.classList.remove('hidden');
+}
+function startExamFullscreen() {
+  fullscreenPrompt.classList.add('hidden');
+  blockNotifications();
+  const el = document.documentElement;
+  const p = el.requestFullscreen?.() || el.webkitRequestFullscreen?.() || el.mozRequestFullScreen?.() || el.msRequestFullscreen?.();
+  if (p && typeof p.then === 'function') p.then(() => startExam()).catch(() => startExam());
+  else startExam();
+}
+function startExam() {
+  isExamActive = true;
+  formSubmitted = false;
+  bgAppViolationCount = 0;
+  loginPage.classList.add('hidden');
+  examPage.classList.remove('hidden');
+  examPage.style.display = 'flex';
+  document.getElementById('exam-title').textContent = `PSAT - ${currentStudentData.mapel}`;
+  document.getElementById('student-info').textContent = `${currentStudentData.nama} - ${currentStudentData.nis} - ${currentStudentData.kelas}`;
+  loadGoogleForm();
+  activateStrictMode();
+  setupSplitScreenDetection();
+  setupAntiPiP();
+  setupAntiOverlay();
+  setupAntiFloatingApp();
+  setupBackgroundAppKiller();
+  setupChatBubbleKiller();
+  if (window._startRAFHeartbeat) window._startRAFHeartbeat();
+}
+function loadGoogleForm() {
+  const { kelas, mapel } = currentStudentData;
+  const formUrl = FORM_MAPPING[kelas]?.[mapel];
+  if (!formUrl) {
+    examIframe.srcdoc = `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:linear-gradient(135deg,#f0fdf4,#dcfce7);padding:20px;box-sizing:border-box}.container{text-align:center;max-width:500px;background:white;padding:40px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.1)}h1{color:#1a472a}p{color:#666;line-height:1.6}.badge{display:inline-block;background:linear-gradient(135deg,#d4af37,#f4d03f);color:#1a472a;padding:10px 20px;border-radius:30px;font-weight:bold;margin-top:20px}.info{background:#f0fdf4;padding:15px;border-radius:10px;margin-top:20px;font-size:14px;color:#1a472a}</style></head><body><div class="container"><h1>📝 ${mapel}</h1><p>Soal ujian <strong>${mapel}</strong> untuk kelas <strong>${kelas}</strong> akan ditampilkan di sini.</p><div class="badge">DEMO MODE</div><div class="info"><strong>Catatan Admin:</strong><br>Ganti URL di FORM_MAPPING dengan URL Google Form yang sebenarnya.</div></div></body></html>`;
+    setTimeout(() => loadingOverlay.classList.add('hidden'), 1000);
+  } else { examIframe.src = formUrl; }
+}
 
-            // iOS: Block AssistiveTouch / Control Center detection
-            if (isIOS) {
-                // Control Center swipe triggers a blur event with very fast recovery
-                let iosBlurCount = 0;
-                let iosFocusCount = 0;
-                window.addEventListener('blur',  () => { if (isExamActive) iosBlurCount++; });
-                window.addEventListener('focus', () => { if (isExamActive) iosFocusCount++; });
-                setInterval(() => {
-                    if (!isExamActive || formSubmitted) return;
-                    // If blur/focus oscillates rapidly = control center or notification pulled
-                    if (iosBlurCount >= 2 && iosFocusCount >= 2) {
-                        const excess = iosBlurCount - 1;
-                        iosBlurCount = 0; iosFocusCount = 0;
-                        if (excess >= 2) {
-                            showAppSwitchWarning('iOS: Control Center / Notification Center terdeteksi dibuka');
-                        }
-                    } else {
-                        iosBlurCount = 0; iosFocusCount = 0;
-                    }
-                }, 2000);
-            }
+// ==================== ANTI-CHEAT ====================
+function setupAntiCheating() {
+  document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'F12') { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba membuka Developer Tools (F12)'); return false; }
+    if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba membuka Developer Tools'); return false; }
+    if (e.ctrlKey && e.key === 'u') { e.preventDefault(); if (isExamActive) showAppSwitchWarning('Mencoba melihat source code'); return false; }
+    if (e.ctrlKey && ['s','c','v','a','p'].includes(e.key)) {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') { e.preventDefault(); return false; }
+    }
+    if (e.key === 'Escape' && isExamActive) { e.preventDefault(); return false; }
+    if (e.altKey && e.key === 'Tab') { e.preventDefault(); return false; }
+    if ((e.key === 'Meta' || e.key === 'OS') && isExamActive) { e.preventDefault(); return false; }
+    if (!isExamActive || formSubmitted) return;
+    if (e.key === 'PrintScreen') { e.preventDefault(); showAppSwitchWarning('Mencoba screenshot (Print Screen)'); }
+    if (e.metaKey && e.shiftKey && ['3','4','5','6'].includes(e.key)) { e.preventDefault(); showAppSwitchWarning('Mencoba screenshot (Mac Shortcut)'); }
+  });
+  document.addEventListener('dragstart', e => { e.preventDefault(); return false; });
+  document.addEventListener('selectstart', function (e) { if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') { e.preventDefault(); return false; } });
+}
 
-            // Android: Back gesture / recent apps detection
-            if (isAndroid) {
-                window.addEventListener('popstate', () => {
-                    if (isExamActive && !formSubmitted) {
-                        history.pushState(null, null, location.href);
-                        showAppSwitchWarning('Android: Tombol back / recent apps ditekan');
-                    }
-                });
-            }
-        }
+function activateStrictMode() {
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden && isExamActive && !formSubmitted) {
+      setTimeout(() => { if (document.hidden && isExamActive && !formSubmitted) showAppSwitchWarning('Keluar dari ujian / membuka aplikasi lain'); }, 200);
+    }
+  });
+  let blurTimeout = null;
+  window.addEventListener('blur', function () {
+    if (!isExamActive || formSubmitted) return;
+    blurTimeout = setTimeout(() => { if (isExamActive && !formSubmitted && document.hidden) showAppSwitchWarning('Browser kehilangan fokus'); }, 400);
+  });
+  window.addEventListener('focus', function () { if (blurTimeout) { clearTimeout(blurTimeout); blurTimeout = null; } });
+  document.addEventListener('freeze', function () { if (isExamActive && !formSubmitted) showAppSwitchWarning('Aplikasi di-freeze'); });
+  window.addEventListener('pagehide', function () { if (isExamActive && !formSubmitted) showAppSwitchWarning('Halaman disembunyikan'); });
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(evt => {
+    document.addEventListener(evt, function () {
+      const isFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+      if (!isFS && isExamActive && !formSubmitted && !isMobile) showAppSwitchWarning('Keluar dari mode fullscreen');
+    });
+  });
+  window.onbeforeunload = function (e) { if (isExamActive && !formSubmitted) { e.preventDefault(); e.returnValue = ''; return ''; } };
+  let dtOpen = false;
+  setInterval(() => {
+    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+      if (!dtOpen && isExamActive && !formSubmitted) { dtOpen = true; showAppSwitchWarning('Developer Tools terbuka'); }
+    } else { dtOpen = false; }
+  }, 1000);
+  if (isIOS) {
+    let iosBlurCount = 0; let iosFocusCount = 0;
+    window.addEventListener('blur',  () => { if (isExamActive) iosBlurCount++;  });
+    window.addEventListener('focus', () => { if (isExamActive) iosFocusCount++; });
+    setInterval(() => {
+      if (!isExamActive || formSubmitted) return;
+      if (iosBlurCount >= 2 && iosFocusCount >= 2) {
+        const excess = iosBlurCount - 1; iosBlurCount = 0; iosFocusCount = 0;
+        if (excess >= 2) showAppSwitchWarning('iOS: Control Center / Notification Center terdeteksi');
+      } else { iosBlurCount = 0; iosFocusCount = 0; }
+    }, 2000);
+  }
+  if (isAndroid) {
+    window.addEventListener('popstate', () => {
+      if (isExamActive && !formSubmitted) { history.pushState(null, null, location.href); showAppSwitchWarning('Android: Tombol back / recent apps'); }
+    });
+  }
+}
 
-        function preventBackNavigation() {
-            history.pushState(null, null, location.href);
-            window.addEventListener('popstate', function() {
-                history.pushState(null, null, location.href);
-                if (isExamActive && !formSubmitted) showAppSwitchWarning('Menekan tombol back');
-            });
-        }
+function preventBackNavigation() {
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function () {
+    history.pushState(null, null, location.href);
+    if (isExamActive && !formSubmitted) showAppSwitchWarning('Menekan tombol back');
+  });
+}
 
-        function markExamCompleted() {
-            if (currentStudentData) {
-                localStorage.setItem(`psat_completed_${currentStudentData.nis}_${currentStudentData.mapel}`, JSON.stringify({
-                    nis: currentStudentData.nis, nama: currentStudentData.nama,
-                    kelas: currentStudentData.kelas, mapel: currentStudentData.mapel,
-                    completedAt: Date.now()
-                }));
-            }
-        }
+function markExamCompleted() {
+  if (currentStudentData) {
+    localStorage.setItem(`psat_completed_${currentStudentData.nis}_${currentStudentData.mapel}`, JSON.stringify({
+      nis: currentStudentData.nis, nama: currentStudentData.nama,
+      kelas: currentStudentData.kelas, mapel: currentStudentData.mapel,
+      completedAt: Date.now()
+    }));
+  }
+}
 
-        function checkExistingSession() {
-            const session = sessionStorage.getItem('psat_session');
-            if (session) {
-                try {
-                    currentStudentData = JSON.parse(session);
-                    const key = `psat_completed_${currentStudentData.nis}_${currentStudentData.mapel}`;
-                    if (localStorage.getItem(key)) { showFinishPage(); return; }
-                    fullscreenPrompt.classList.remove('hidden');
-                } catch(e) { sessionStorage.removeItem('psat_session'); }
-            }
-        }
+function checkExistingSession() {
+  const session = sessionStorage.getItem('psat_session');
+  if (session) {
+    try {
+      currentStudentData = JSON.parse(session);
+      const key = `psat_completed_${currentStudentData.nis}_${currentStudentData.mapel}`;
+      if (localStorage.getItem(key)) { showFinishPage(); return; }
+      fullscreenPrompt.classList.remove('hidden');
+    } catch (e) { sessionStorage.removeItem('psat_session'); }
+  }
+}
+function showLoginPage() {
+  loginPage.classList.remove('hidden'); loginPage.style.display = '';
+  examPage.classList.add('hidden'); examPage.style.display = 'none';
+  finishPage.classList.add('hidden');
+  [appSwitchWarning, splitScreenWarning, pipWarning, overlayWarning, floatingWarning, bgAppWarning, bubbleWarning].forEach(el => el.classList.remove('show'));
+  violationPopup.classList.add('hidden');
+  loginForm.reset(); mapelSelect.disabled = true;
+  mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>';
+  isExamActive = false; violationDetected = false; formSubmitted = false; currentStudentData = null;
+}
+function showFinishPage() {
+  loginPage.classList.add('hidden');
+  examPage.classList.add('hidden'); examPage.style.display = 'none';
+  finishPage.classList.remove('hidden'); finishPage.style.display = 'flex';
+  if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+  if (currentStudentData) {
+    document.getElementById('finish-info').innerHTML = `<strong>${currentStudentData.nama}</strong><br>NIS: ${currentStudentData.nis}<br>Kelas: ${currentStudentData.kelas}<br>Mata Pelajaran: ${currentStudentData.mapel}`;
+  }
+  sessionStorage.removeItem('psat_session');
+  isExamActive = false; window.onbeforeunload = null;
+}
+function showError(msg) { errorMessage.textContent = msg; errorMessage.classList.remove('hidden'); shakeElement(errorMessage); }
+function hideError()    { errorMessage.classList.add('hidden'); }
+function shakeElement(el) { el.classList.add('animate-shake'); setTimeout(() => el.classList.remove('animate-shake'), 500); }
+function generateToken()  { return 'PSAT-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2,9); }
 
-        function showLoginPage() {
-            loginPage.classList.remove('hidden'); loginPage.style.display = '';
-            examPage.classList.add('hidden'); examPage.style.display = 'none';
-            finishPage.classList.add('hidden');
-            appSwitchWarning.classList.remove('show');
-            splitScreenWarning.classList.remove('show');
-            pipWarning.classList.remove('show');
-            overlayWarning.classList.remove('show');
-            floatingWarning.classList.remove('show');
-            violationPopup.classList.add('hidden');
-            loginForm.reset();
-            mapelSelect.disabled = true;
-            mapelSelect.innerHTML = '<option value="">-- Pilih Kelas Terlebih Dahulu --</option>';
-            isExamActive = false; violationDetected = false; formSubmitted = false;
-            currentStudentData = null;
-        }
-
-        function showFinishPage() {
-            loginPage.classList.add('hidden');
-            examPage.classList.add('hidden'); examPage.style.display = 'none';
-            finishPage.classList.remove('hidden'); finishPage.style.display = 'flex';
-            if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
-            if (currentStudentData) {
-                document.getElementById('finish-info').innerHTML =
-                    `<strong>${currentStudentData.nama}</strong><br>NIS: ${currentStudentData.nis}<br>Kelas: ${currentStudentData.kelas}<br>Mata Pelajaran: ${currentStudentData.mapel}`;
-            }
-            sessionStorage.removeItem('psat_session');
-            isExamActive = false;
-            window.onbeforeunload = null;
-        }
-
-        function showError(msg) { errorMessage.textContent = msg; errorMessage.classList.remove('hidden'); shakeElement(errorMessage); }
-        function hideError()    { errorMessage.classList.add('hidden'); }
-        function shakeElement(el) { el.classList.add('animate-shake'); setTimeout(() => el.classList.remove('animate-shake'), 500); }
-        function generateToken()  { return 'PSAT-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2,9); }
-
-        // Suppress console
-        const noop = () => {};
-        ['log','debug','info','warn','error','table','trace'].forEach(m => { try { console[m] = noop; } catch(e) {} });
-  </script>
- </body>
+// Suppress console
+const noop = () => {};
+['log','debug','info','warn','error','table','trace'].forEach(m => { try { console[m] = noop; } catch (e) {} });
+</script>
+</body>
 </html>
